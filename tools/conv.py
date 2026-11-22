@@ -1,6 +1,6 @@
 import re,sys,os
 src,dst=sys.argv[1],sys.argv[2]
-names={"Main":"홈 (데스크톱)","AllTours":"All Tours (데스크톱)","TourDetail":"상품 상세 (데스크톱)","PlanYourTrip":"Plan Your Trip 문의 양식 (데스크톱)","About":"About Envoy (데스크톱)","Contact":"Contact (데스크톱)","MobileHome":"홈 (모바일)","MobileDetail":"상품 상세 (모바일)"}
+names={"Main":"홈","AllTours":"All Tours","TourDetail":"상품 상세","PlanYourTrip":"Plan Your Trip","About":"About Envoy","Contact":"Contact","MobileHome":"모바일 홈","MobileDetail":"모바일 상품 상세"}
 outn={"Main":"home"}
 def fn(n): return outn.get(n, re.sub(r'(?<!^)([A-Z])',r'-\1',n).lower())
 for n,t in names.items():
@@ -36,7 +36,7 @@ for n,t in names.items():
 </style>
 </head>
 <body>
-<div class="wf-bar"><a href="../index.html#tours-wireframes">← 와이어프레임 목록</a><span class="t">{note}</span>{nav}</div>
+<div class="wf-bar"><a href="../index.html#tours-wireframes">← 와이어프레임 목록</a><span class="t">{t}</span>{nav}</div>
 {'<div class="phone-stage">' if mobile else ''}{wrap_open}{body}{wrap_close}{'</div>' if mobile else ''}
 </body>
 </html>
