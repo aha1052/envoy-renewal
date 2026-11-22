@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contact wireframe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1f1f1f;background:#fff}
+a{color:#1f1f1f}a:hover{color:#000}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 100%; font-size: 15px; line-height: 1.5">
+  <div style="background: #efefef; padding: 8px 24px; font-size: 13px; color: #444" lang="ko">와이어프레임 · Contact (데스크톱) · 연락처는 임시 값</div>
+
+  <header style="border-bottom: 1px solid #cfcfcf">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 12px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+      <a href="Main.dc.html" style="width: 120px; height: 40px; background: #e4e4e4; border: 1px solid #c4c4c4; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #555; text-decoration: none">LOGO</a>
+      <nav style="display: flex; flex-wrap: wrap; gap: 28px; flex: 1 1 320px; font-weight: 600">
+        <a href="AllTours.dc.html" style="text-decoration: none">Tours</a>
+        <a href="Destinations.dc.html" style="text-decoration: none">Destinations</a>
+        <a href="About.dc.html" style="text-decoration: none">About Envoy</a>
+        <a href="Contact.dc.html" style="text-decoration: underline">Contact</a>
+      </nav>
+      <a href="#" style="color: #555; font-size: 14px">WhatsApp</a>
+      <a href="PlanYourTrip.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; background: #1f1f1f; color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600">Plan Your Trip</a>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px 40px 48px">
+    <h1 style="margin: 0 0 4px; font-size: 34px">Contact</h1>
+    <p style="margin: 0 0 24px; color: #444">Choose the option that fits your trip.</p>
+
+    <section style="margin-bottom: 32px">
+      <div lang="ko" style="display: inline-block; background: #3d3d3d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-bottom: 12px">문의 유형 선택 · 공통 양식으로 연결</div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+        <a href="PlanYourTrip.dc.html" style="border: 1px solid #bdbdbd; border-radius: 8px; padding: 20px; text-decoration: none; display: flex; flex-direction: column; gap: 6px"><strong>Plan Your Trip</strong><span style="font-size: 13px; color: #555">Private and custom trips</span></a>
+        <a href="PlanYourTrip.dc.html" style="border: 1px solid #bdbdbd; border-radius: 8px; padding: 20px; text-decoration: none; display: flex; flex-direction: column; gap: 6px"><strong>Group Inquiry</strong><span style="font-size: 13px; color: #555">Churches, companies, families</span></a>
+        <a href="PlanYourTrip.dc.html" style="border: 1px solid #bdbdbd; border-radius: 8px; padding: 20px; text-decoration: none; display: flex; flex-direction: column; gap: 6px"><strong>Partners (B2B)</strong><span style="font-size: 13px; color: #555">Travel agencies</span></a>
+        <a href="#general" style="border: 1px solid #bdbdbd; border-radius: 8px; padding: 20px; text-decoration: none; display: flex; flex-direction: column; gap: 6px"><strong>General questions</strong><span style="font-size: 13px; color: #555">Anything else</span></a>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+      <section style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 16px">
+        <div lang="ko" style="align-self: flex-start; background: #3d3d3d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px">사무소와 연락처</div>
+        <div style="height: 240px; background: #e4e4e4; border: 1px solid #c4c4c4; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #555">Map</div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; font-size: 14px">
+          <div><strong>Tbilisi office</strong><div style="color: #555">[Address]</div></div>
+          <div><strong>Yerevan office</strong><div style="color: #555">[Address]</div></div>
+          <div><strong>WhatsApp</strong><div><a href="#">+995 000 000 000</a></div></div>
+          <div><strong>Email</strong><div><a href="#">info@envoytours.com</a></div></div>
+        </div>
+      </section>
+
+      <form id="general" style="flex: 1 1 480px; border: 1px solid #bdbdbd; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div lang="ko" style="align-self: flex-start; background: #3d3d3d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px">일반 문의 · 공통 양식</div>
+        <div style="display: flex; flex-direction: column; gap: 4px"><label for="cname" style="font-size: 13px; font-weight: 600">Full name</label><input id="cname" type="text" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit"></div>
+        <div style="display: flex; flex-direction: column; gap: 4px"><label for="cemail" style="font-size: 13px; font-weight: 600">Email</label><input id="cemail" type="email" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit"></div>
+        <div style="display: flex; flex-direction: column; gap: 4px"><label for="cmsg" style="font-size: 13px; font-weight: 600">Message</label><textarea id="cmsg" rows="4" style="border: 1px solid #9e9e9e; border-radius: 6px; padding: 12px; font: inherit"></textarea></div>
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; min-height: 44px"><input type="checkbox"> I agree to the privacy policy</label>
+        <button type="button" style="align-self: flex-start; min-height: 48px; padding: 0 32px; background: #1f1f1f; color: #fff; border: none; border-radius: 6px; font: inherit; font-weight: 600">Send</button>
+      </form>
+    </div>
+  </main>
+
+  <footer style="background: #f2f2f2">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 24px 40px; font-size: 13px; color: #555">Footer (same as home)</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plan Your Trip wireframe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1f1f1f;background:#fff}
+a{color:#1f1f1f}a:hover{color:#000}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 100%; font-size: 15px; line-height: 1.5">
+  <div style="background: #efefef; padding: 8px 24px; font-size: 13px; color: #444" lang="ko">와이어프레임 · Plan Your Trip 문의 양식 (데스크톱) · 공통 양식 기반, 용도별 추가 항목만 다름</div>
+
+  <header style="border-bottom: 1px solid #cfcfcf">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 12px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+      <a href="Main.dc.html" style="width: 120px; height: 40px; background: #e4e4e4; border: 1px solid #c4c4c4; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #555; text-decoration: none">LOGO</a>
+      <nav style="display: flex; flex-wrap: wrap; gap: 28px; flex: 1 1 320px; font-weight: 600">
+        <a href="AllTours.dc.html" style="text-decoration: none">Tours</a>
+        <a href="Destinations.dc.html" style="text-decoration: none">Destinations</a>
+        <a href="About.dc.html" style="text-decoration: none">About Envoy</a>
+        <a href="Contact.dc.html" style="text-decoration: none">Contact</a>
+      </nav>
+      <a href="#" style="color: #555; font-size: 14px">WhatsApp</a>
+      <a href="PlanYourTrip.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; background: #1f1f1f; color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600">Plan Your Trip</a>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px 40px 48px">
+    <h1 style="margin: 0 0 4px; font-size: 34px">Plan Your Trip</h1>
+    <p style="margin: 0 0 24px; color: #444">Tell us when and how you want to travel. We reply within [reply time TBD].</p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+      <form style="flex: 999 1 560px; min-width: 0; border: 1px solid #bdbdbd; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div lang="ko" style="align-self: flex-start; background: #3d3d3d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px">공통 항목</div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 4px"><label for="name" style="font-size: 13px; font-weight: 600">Full name</label><input id="name" type="text" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit"></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><label for="email" style="font-size: 13px; font-weight: 600">Email</label><input id="email" type="email" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit"></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><label for="country" style="font-size: 13px; font-weight: 600">Country</label><input id="country" type="text" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit"></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><label for="wa" style="font-size: 13px; font-weight: 600">WhatsApp (optional)</label><input id="wa" type="tel" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit"></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><label for="dates" style="font-size: 13px; font-weight: 600">Travel dates</label><input id="dates" type="text" placeholder="Approximate dates or month" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit"></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><label for="pax" style="font-size: 13px; font-weight: 600">Number of travellers</label><input id="pax" type="number" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit"></div>
+        </div>
+
+        <div lang="ko" style="align-self: flex-start; background: #3d3d3d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-top: 8px">Plan Your Trip 추가 항목</div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 4px"><label for="length" style="font-size: 13px; font-weight: 600">Trip length</label><select id="length" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit; background: #fff"><option>1 day</option><option>2–5 days</option><option>6–10 days</option><option>More than 10 days</option></select></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><label for="budget" style="font-size: 13px; font-weight: 600">Budget per person</label><select id="budget" style="min-height: 44px; border: 1px solid #9e9e9e; border-radius: 6px; padding: 0 12px; font: inherit; background: #fff"><option>[Ranges TBD]</option></select></div>
+        </div>
+        <fieldset style="border: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px">
+          <legend style="font-size: 13px; font-weight: 600; margin-bottom: 8px">Interests</legend>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px">
+            <label style="display: flex; align-items: center; gap: 6px; min-height: 44px"><input type="checkbox"> Christian heritage</label>
+            <label style="display: flex; align-items: center; gap: 6px; min-height: 44px"><input type="checkbox"> Wine and food</label>
+            <label style="display: flex; align-items: center; gap: 6px; min-height: 44px"><input type="checkbox"> Nature and hiking</label>
+            <label style="display: flex; align-items: center; gap: 6px; min-height: 44px"><input type="checkbox"> History and culture</label>
+          </div>
+        </fieldset>
+        <div style="display: flex; flex-direction: column; gap: 4px"><label for="msg" style="font-size: 13px; font-weight: 600">Anything else?</label><textarea id="msg" rows="4" style="border: 1px solid #9e9e9e; border-radius: 6px; padding: 12px; font: inherit"></textarea></div>
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; min-height: 44px"><input type="checkbox"> I agree to the privacy policy</label>
+        <button type="button" style="align-self: flex-start; min-height: 48px; padding: 0 32px; background: #1f1f1f; color: #fff; border: none; border-radius: 6px; font: inherit; font-weight: 600">Send Request</button>
+      </form>
+
+      <aside style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px">
+        <div style="border: 1px solid #bdbdbd; border-radius: 8px; padding: 20px">
+          <div lang="ko" style="display: inline-block; background: #3d3d3d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-bottom: 12px">예약 흐름 안내</div>
+          <strong>What happens next</strong>
+          <ol style="margin: 8px 0 0; padding-left: 20px; font-size: 14px; display: flex; flex-direction: column; gap: 6px">
+            <li>We receive your request and email you a confirmation</li>
+            <li>We check guides, vehicles and dates</li>
+            <li>You pay a deposit or the full amount</li>
+            <li>Your booking is confirmed with a voucher</li>
+          </ol>
+        </div>
+        <div style="border: 1px solid #bdbdbd; border-radius: 8px; padding: 20px; font-size: 14px"><strong>Prefer to chat?</strong><div><a href="#">WhatsApp +995 000 000 000</a></div></div>
+        <div style="border: 2px dashed #9e9e9e; border-radius: 8px; padding: 20px; font-size: 13px">
+          <div lang="ko" style="display: inline-block; background: #3d3d3d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px">다른 양식의 추가 항목</div>
+          <table style="width: 100%; border-collapse: collapse">
+            <tr><th style="text-align: left; padding: 4px 8px 4px 0; vertical-align: top">Request a Booking</th><td style="padding: 4px 0">Tour, date, group or private</td></tr>
+            <tr><th style="text-align: left; padding: 4px 8px 4px 0; vertical-align: top">Group Inquiry</th><td style="padding: 4px 0">Group name, type, expected size</td></tr>
+            <tr><th style="text-align: left; padding: 4px 8px 4px 0; vertical-align: top">Partners (B2B)</th><td style="padding: 4px 0">Company, country, type of partnership</td></tr>
+          </table>
+        </div>
+        <div style="border: 2px dashed #9e9e9e; border-radius: 8px; padding: 20px; font-size: 13px">
+          <div lang="ko" style="display: inline-block; background: #3d3d3d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px">제출 후 화면</div>
+          <div><strong>Thank you, we have your request</strong></div>
+          <div style="color: #555">Expected reply time, request summary, link back to tours</div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer style="background: #f2f2f2">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 24px 40px; font-size: 13px; color: #555">Footer (same as home)</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

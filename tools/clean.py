@@ -39,4 +39,5 @@ M={
 for f in glob.glob(d+"/*.html"):
     s=open(f,encoding="utf-8").read()
     for a,b in M.items(): s=s.replace(">"+a+"<",">"+b+"<")
+    s=s.replace("Footer (same as home)","Footer")
     open(f,"w",encoding="utf-8").write(s)

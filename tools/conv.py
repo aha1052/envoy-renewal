@@ -1,6 +1,6 @@
 import re,sys,os
 src,dst=sys.argv[1],sys.argv[2]
-names={"Main":"홈","AllTours":"All Tours","TourDetail":"상품 상세","PlanYourTrip":"Plan Your Trip","About":"About Envoy","Contact":"Contact","MobileHome":"모바일 홈","MobileDetail":"모바일 상품 상세"}
+names={"Main":"홈","AllTours":"All Tours","TourDetail":"상품 상세","Destinations":"Destinations","DestinationGeorgia":"Destinations · Georgia","PlanYourTrip":"Plan Your Trip","About":"About Envoy","Contact":"Contact","MobileHome":"모바일 홈","MobileDetail":"모바일 상품 상세"}
 outn={"Main":"home"}
 def fn(n): return outn.get(n, re.sub(r'(?<!^)([A-Z])',r'-\1',n).lower())
 for n,t in names.items():
