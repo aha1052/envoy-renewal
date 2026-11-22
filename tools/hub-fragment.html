@@ -1,0 +1,663 @@
+<title>Envoy 웹사이트 리뉴얼</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: project binder. Fixed left index of projects and stages, one reading column on the right. Ink of Caucasus pine, ground of limestone, accent of Armenian tuff. */
+:root {
+  --bg: #f6f4ef;
+  --panel: #fffdf8;
+  --ink: #1d2a26;
+  --muted: #5b6661;
+  --line: #ddd8cc;
+  --pine: #24453b;
+  --tuff: #b4552f;
+  --tuff-soft: #f4e3d8;
+  --pine-soft: #e3ebe6;
+  --f-display: "Noto Serif KR", "Apple SD Gothic Neo", serif;
+  --f-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141a18; --panel: #1b2320; --ink: #e9ece6; --muted: #a3ada7; --line: #33403b;
+    --pine: #8fc0ad; --tuff: #e58a63; --tuff-soft: #3a2820; --pine-soft: #22332d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141a18; --panel: #1b2320; --ink: #e9ece6; --muted: #a3ada7; --line: #33403b;
+  --pine: #8fc0ad; --tuff: #e58a63; --tuff-soft: #3a2820; --pine-soft: #22332d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15.5px/1.75 var(--f-body); word-break: keep-all; overflow-wrap: anywhere; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel); }
+a { color: var(--pine); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--tuff); outline-offset: 2px; }
+
+/* language */
+html[data-lang="ko"] [data-en] { display: none !important; }
+html[data-lang="en"] [data-ko] { display: none !important; }
+.en-note { display: none; }
+html[data-lang="en"] .view[data-en-ready="false"] .en-note { display: block; }
+
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--panel); border-bottom: 1px solid var(--line); }
+.topbar-in { display: flex; align-items: center; gap: 16px; padding-block: 12px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); max-width: 1240px; margin: 0 auto; }
+.brand { display: flex; flex-direction: column; line-height: 1.25; flex: 1; min-width: 0; text-decoration: none; color: var(--ink); }
+.brand b { font-family: var(--f-display); font-size: 18px; }
+.brand small { color: var(--muted); font-size: 12.5px; }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--bg); }
+.lang button { font: 500 13px var(--f-body); border: 0; background: transparent; color: var(--muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; min-height: 34px; }
+.lang button[aria-pressed="true"] { background: var(--pine); color: var(--panel); }
+
+.shell { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 40px; padding-block: 32px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); align-self: start; display: flex; flex-direction: column; gap: 22px; }
+.side h3 { margin: 0 0 6px; font: 500 11.5px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.side nav { display: flex; flex-direction: column; }
+.side a { text-decoration: none; color: var(--ink); padding: 7px 12px; border-radius: 6px; font-size: 14.5px; display: flex; justify-content: space-between; gap: 8px; }
+.side a:hover { background: var(--pine-soft); }
+.side a[aria-current="page"] { background: var(--pine); color: var(--panel); }
+.side a .tag { font: 11px var(--f-mono); opacity: .75; align-self: center; }
+
+main { min-width: 0; }
+.view { display: none; }
+.view.on { display: block; }
+.eyebrow { font: 500 12px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--tuff); margin: 0 0 8px; }
+h1 { font-family: var(--f-display); font-size: clamp(26px, 4vw, 36px); line-height: 1.3; margin: 0 0 12px; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-size: 22px; line-height: 1.4; margin: 48px 0 14px; padding-top: 20px; border-top: 1px solid var(--line); text-wrap: balance; scroll-margin-top: 90px; }
+h4 { font-size: 15.5px; margin: 22px 0 6px; }
+.lede { color: var(--muted); max-width: 66ch; margin: 0 0 8px; }
+.meta { font: 12.5px var(--f-mono); color: var(--muted); }
+p, ul, ol { max-width: 72ch; }
+ul, ol { padding-left: 1.3em; }
+li + li { margin-top: 4px; }
+.en-note { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 12px 16px; margin: 0 0 24px; font-size: 14px; color: var(--muted); }
+
+.tbl { overflow-x: auto; margin: 12px 0 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { font-weight: 500; font-size: 13px; color: var(--muted); background: var(--bg); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 500; }
+
+.toc { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px 18px; margin: 20px 0 8px; padding: 16px 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--ink); }
+.toc a:hover { color: var(--tuff); }
+.toc span { font-family: var(--f-mono); color: var(--muted); margin-right: 6px; }
+
+/* overview */
+.proj { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 28px 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card h3 { font-family: var(--f-display); font-size: 20px; margin: 0; }
+.card .url { font: 12.5px var(--f-mono); color: var(--muted); }
+.card .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
+.btn { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--pine); color: var(--pine); text-decoration: none; font-size: 14px; font-weight: 500; }
+.btn.solid { background: var(--pine); color: var(--panel); }
+.pill { display: inline-block; font: 500 12px var(--f-body); padding: 2px 10px; border-radius: 999px; }
+.pill.go { background: var(--tuff-soft); color: var(--tuff); }
+.pill.wait { background: var(--pine-soft); color: var(--muted); }
+.pill.done { background: var(--pine-soft); color: var(--pine); }
+
+/* stage track */
+.track { list-style: none; padding: 0; margin: 16px 0; max-width: none; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel); }
+.track li { margin: 0; padding: 14px 14px 16px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; position: relative; }
+.track li:last-child { border-right: 0; }
+.track li .n { font: 500 12px var(--f-mono); color: var(--muted); }
+.track li b { font-size: 14.5px; line-height: 1.4; }
+.track li.now { background: var(--tuff-soft); }
+.track li.now::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--tuff); }
+
+.log { list-style: none; padding: 0; margin: 12px 0; max-width: none; border-left: 2px solid var(--line); }
+.log li { padding: 2px 0 14px 18px; position: relative; margin: 0; }
+.log li::before { content: ""; position: absolute; left: -6px; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: var(--panel); border: 2px solid var(--pine); }
+.log time { font: 12.5px var(--f-mono); color: var(--muted); display: block; }
+
+/* sitemap */
+.sitemap { margin: 16px 0; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
+.sm-root { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px dashed var(--line); margin-bottom: 14px; }
+.sm-root b { font-family: var(--f-display); }
+.sm-cta { font-size: 13px; padding: 4px 12px; border-radius: 6px; background: var(--tuff); color: var(--panel); white-space: nowrap; }
+.sm-cols { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 14px; min-width: 640px; }
+.sm-col h5 { margin: 0 0 8px; font-size: 14.5px; padding: 6px 10px; background: var(--pine); color: var(--panel); border-radius: 6px; }
+.sm-col ul { list-style: none; padding: 0; margin: 0; font-size: 13.5px; }
+.sm-col li { padding: 5px 10px; border-left: 2px solid var(--line); margin: 0; }
+.sm-col li.later { color: var(--muted); border-left-style: dashed; }
+.sm-col li small { color: var(--muted); }
+
+/* wireframe list */
+.wf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 16px 0 28px; }
+.wf { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.wf:hover { border-color: var(--pine); }
+.wf .thumb { height: 120px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); padding: 10px; display: grid; gap: 6px; grid-template-rows: 10px 1fr 14px; }
+.wf .thumb i { display: block; background: var(--line); border-radius: 3px; }
+.wf.m .thumb { width: 74px; margin: 0 auto; grid-template-rows: 8px 1fr 12px 12px; }
+.wf b { font-size: 15px; }
+.wf span { font-size: 13px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 13.5px; color: var(--muted); margin: 8px 0 0; padding: 0; list-style: none; max-width: none; }
+.legend li { margin: 0; }
+
+.empty { background: var(--panel); border: 1px dashed var(--line); border-radius: 10px; padding: 28px; margin: 24px 0; }
+footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font-size: 12.5px; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-block: 16px 64px; }
+  .side { position: static; flex-direction: row; overflow-x: auto; gap: 18px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .side > div { flex: none; }
+  .side nav { flex-direction: row; }
+  .side a { white-space: nowrap; }
+  .side a .tag { display: none; }
+  .proj { grid-template-columns: minmax(0, 1fr); }
+  .track { grid-template-columns: minmax(0, 1fr); }
+  .track li { border-right: 0; border-bottom: 1px solid var(--line); }
+  .track li:last-child { border-bottom: 0; }
+}
+@media (prefers-reduced-motion: no-preference) { .view.on { animation: rise .25s ease-out; } @keyframes rise { from { transform: translateY(4px); } to { transform: none; } } }
+</style>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#overview">
+      <b><span data-ko>Envoy 웹사이트 리뉴얼</span><span data-en>Envoy Website Renewal</span></b>
+      <small><span data-ko>기획·디자인·구축 진행 공유</span><span data-en>Planning, design and build progress</span></small>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-ko" data-set-lang="ko" aria-pressed="true">국문</button>
+      <button type="button" id="lang-en" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="side">
+    <div>
+      <h3><span data-ko>프로젝트</span><span data-en>Project</span></h3>
+      <nav><a href="#overview"><span data-ko>개요</span><span data-en>Overview</span></a></nav>
+    </div>
+    <div>
+      <h3>Envoy Tours</h3>
+      <nav>
+        <a href="#tours-plan"><span data-ko>기획안</span><span data-en>Plan</span><span class="tag">01</span></a>
+        <a href="#tours-wireframes"><span data-ko>와이어프레임</span><span data-en>Wireframes</span><span class="tag">02</span></a>
+        <a href="#tours-progress"><span data-ko>진행 현황</span><span data-en>Progress</span></a>
+      </nav>
+    </div>
+    <div>
+      <h3>Envoy Hostel</h3>
+      <nav><a href="#hostel"><span data-ko>착수 예정</span><span data-en>Upcoming</span></a></nav>
+    </div>
+  </aside>
+
+  <main>
+    <!-- OVERVIEW -->
+    <section class="view" id="v-overview" data-en-ready="false">
+      <p class="en-note">The English version of this page will be added after review. The Korean content is shown below.</p>
+      <p class="eyebrow">Overview</p>
+      <h1>Envoy 웹사이트 리뉴얼 진행 공유</h1>
+      <p class="lede">Envoy Tours와 Envoy Hostel 두 웹사이트의 리뉴얼 기획안, 와이어프레임, 이후 디자인 및 구축 진행 상황을 본 페이지에서 공유함. 각 단계의 검토본은 확정되는 대로 같은 주소에 반영됨.</p>
+      <p class="meta">최종 업데이트 2026-11-22</p>
+
+      <div class="proj">
+        <div class="card">
+          <span class="pill go">진행 중 · 1단계 사이트 구조 기획</span>
+          <h3>Envoy Tours</h3>
+          <span class="url">envoytours.com</span>
+          <p style="margin:0">조지아·아르메니아 투어 상품 탐색과 문의 유도를 중심으로 사이트 구조, 상품 구성, 상세 페이지, 문의·예약 흐름을 재정비함.</p>
+          <div class="links">
+            <a class="btn solid" href="#tours-plan">기획안</a>
+            <a class="btn" href="#tours-wireframes">와이어프레임</a>
+            <a class="btn" href="#tours-progress">진행 현황</a>
+          </div>
+        </div>
+        <div class="card">
+          <span class="pill wait">착수 예정</span>
+          <h3>Envoy Hostel</h3>
+          <span class="url">envoyhostel.com</span>
+          <p style="margin:0">올드 트빌리시 부티크 호스텔과 루프탑 Cafe의 웹사이트 리뉴얼. 투어 사이트 기획 완료 후 착수하며, 호스텔은 2027년 4월 재오픈 예정임.</p>
+          <div class="links"><a class="btn" href="#hostel">상세 보기</a></div>
+        </div>
+      </div>
+
+      <h2 style="margin-top:8px">진행 단계</h2>
+      <ol class="track">
+        <li class="now"><span class="n">1</span><b>사이트 구조 기획</b><span>진행 중</span></li>
+        <li><span class="n">2</span><b>비주얼 디자인</b><span>추후 확정</span></li>
+        <li><span class="n">3</span><b>콘텐츠 제작</b><span>추후 확정</span></li>
+        <li><span class="n">4</span><b>1차 구축 및 공개</b><span>추후 확정</span></li>
+        <li><span class="n">5</span><b>후속 기능 적용</b><span>추후 확정</span></li>
+        <li><span class="n">6</span><b>최적화 및 운영 방안</b><span>추후 확정</span></li>
+      </ol>
+      <p class="meta">Envoy Tours 기준. Envoy Hostel은 착수 시 동일 단계로 추가함.</p>
+
+      <h2>업데이트 기록</h2>
+      <ul class="log">
+        <li><time>2026-11-22</time>Envoy Tours 와이어프레임 8종 공개(데스크톱 6종, 모바일 2종)</li>
+        <li><time>2026-11-22</time>리뉴얼 진행 공유 페이지 개설</li>
+        <li><time>2026-11-21</time>Envoy Tours 웹사이트 리뉴얼 기획안 작성(13개 항목)</li>
+      </ul>
+    </section>
+
+    <!-- TOURS PLAN -->
+    <section class="view" id="v-tours-plan" data-en-ready="false">
+      <p class="en-note">The English version of this plan will be added after review. The Korean content is shown below.</p>
+      <p class="eyebrow">Envoy Tours · 01</p>
+      <h1>엔보이 투어 웹사이트 리뉴얼 기획안</h1>
+      <p class="lede">본 기획안은 Envoy Tours 웹사이트(envoytours.com) 리뉴얼의 배경과 목적, 사이트 구조, 주요 페이지 구성, 문의·예약 흐름, 진행 단계를 정리함.</p>
+      <p class="meta">작성 2026-11-21</p>
+
+      <nav class="toc" aria-label="목차">
+        <a href="#tours-plan" data-jump="p1"><span>1</span>리뉴얼 배경 및 목적</a>
+        <a href="#tours-plan" data-jump="p2"><span>2</span>타깃 고객</a>
+        <a href="#tours-plan" data-jump="p3"><span>3</span>벤치마킹</a>
+        <a href="#tours-plan" data-jump="p4"><span>4</span>사이트맵 및 메뉴 구성</a>
+        <a href="#tours-plan" data-jump="p5"><span>5</span>홈페이지 구성</a>
+        <a href="#tours-plan" data-jump="p6"><span>6</span>투어 카테고리 및 대표 상품</a>
+        <a href="#tours-plan" data-jump="p7"><span>7</span>투어 상세 페이지 템플릿</a>
+        <a href="#tours-plan" data-jump="p8"><span>8</span>문의 및 예약 흐름</a>
+        <a href="#tours-plan" data-jump="p9"><span>9</span>주요 기능 요구사항</a>
+        <a href="#tours-plan" data-jump="p10"><span>10</span>디자인 방향</a>
+        <a href="#tours-plan" data-jump="p11"><span>11</span>콘텐츠 계획</a>
+        <a href="#tours-plan" data-jump="p12"><span>12</span>계열 서비스 연계</a>
+        <a href="#tours-plan" data-jump="p13"><span>13</span>진행 단계</a>
+      </nav>
+
+      <h2 id="p1">1. 리뉴얼 배경 및 목적</h2>
+      <h4>현행 사이트의 주요 문제점</h4>
+      <ul>
+        <li>국가별 메뉴 구조로 투어 상품 탐색이 어려움</li>
+        <li>상품 상세 페이지 구성이 일관되지 않아 가격, 일정, 포함 사항 등 핵심 정보 확인이 어려움</li>
+        <li>가격이 GEL/AMD로만 표기되어 해외 고객의 비교·판단이 어려움</li>
+        <li>2016년 이후 갱신되지 않은 페이지가 다수 존재함</li>
+        <li>예약 요청 양식의 입력 항목(12개)이 많아 문의 전환에 불리함</li>
+      </ul>
+      <h4>리뉴얼 목표</h4>
+      <div class="tbl"><table>
+        <thead><tr><th>목표</th><th>주요 실행 방안</th></tr></thead>
+        <tbody>
+          <tr><td>상품 탐색성 개선</td><td>투어 유형별 메뉴와 All Tours 필터(Day / Multi-day, Group / Private, 국가) 병행, 메인 화면에 대표 상품 및 추천 투어 배치</td></tr>
+          <tr><td>상세 페이지 표준화</td><td>공통 항목과 상품별 선택 항목으로 구성된 템플릿 적용, 첫 화면에서 가격·운영 정보·핵심 포함 사항 제공</td></tr>
+          <tr><td>문의·예약 전환율 제고</td><td>목적별 버튼 구분(상단 Plan Your Trip, 상세 Request a Booking), WhatsApp 보조 배치, 문의 양식 간소화</td></tr>
+          <tr><td>고객 신뢰도 제고</td><td>고객 후기, 국가별 현지 운영 이력, Why Travel with Envoy 섹션 운영</td></tr>
+          <tr><td>브랜드 가치 전달</td><td>기존 Donation 페이지를 Our Impact로 개편, Envoy Mission 실제 사례 소개</td></tr>
+          <tr><td>계열 서비스 연계</td><td>Envoy Hostel, 루프탑 Cafe 연계 동선 구성</td></tr>
+          <tr><td>모바일 우선 설계</td><td>모바일 첫 화면에 상품 배너·문의 버튼 배치, 투어 페이지 롱스크롤 구성</td></tr>
+        </tbody>
+      </table></div>
+      <h4>사이트 운영 기본 방향</h4>
+      <ul>
+        <li>사이트 역할: 투어 상품 탐색 및 문의 유도(Discover and Inquire)</li>
+        <li>사이트 구성: 투어 사이트와 호스텔 사이트를 별도 운영하되 Envoy 단일 브랜드로 통일하고, About Envoy·Envoy Way·Our Impact 콘텐츠는 공유</li>
+        <li>운영 언어: 영문(추후 확정)</li>
+      </ul>
+
+      <h2 id="p2">2. 타깃 고객</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>고객군</th><th>특성</th><th>주요 상품</th></tr></thead>
+        <tbody>
+          <tr><td>해외 개인·소그룹 여행자</td><td>현지 경험과 여유 있는 일정 중시, 트빌리시 체류 중 단기 일정 수요 포함</td><td>Envoy Boutique Journey, Day Tours, Custom and Private</td></tr>
+          <tr><td>단체·관심사 여행자</td><td>교회·기업·동호회 등 공통 관심사를 가진 단체, 테마 중심 여행</td><td>Georgia &amp; Armenia Christian Heritage, Custom and Private</td></tr>
+          <tr><td>여행사 파트너</td><td>해외 여행사의 단체 상품 기획·판매</td><td>대표 상품, 맞춤 단체 상품</td></tr>
+        </tbody>
+      </table></div>
+      <h4>주요 시장 사례: 한국</h4>
+      <ul>
+        <li>한국 교회 단체: 단체·관심사 여행자의 대표 사례로, Georgia &amp; Armenia Christian Heritage의 주요 고객층</li>
+        <li>한국 여행사: 여행사 파트너의 대표 사례로, Partners (B2B) 창구를 통해 대표 상품 판매</li>
+      </ul>
+
+      <h2 id="p3">3. 벤치마킹</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>사이트</th><th>참고 요소</th></tr></thead>
+        <tbody>
+          <tr><td>georgia.to</td><td>사진 중심 디자인, 지역·테마별 탐색 구조</td></tr>
+          <tr><td>thecascadetravel.com</td><td>투어 상품 구성과 상세 페이지 정보 배치</td></tr>
+          <tr><td>georgiaintrend.com</td><td>조지아 현지 투어 상품 분류 및 예약 흐름</td></tr>
+          <tr><td>phoenixtour.org</td><td>코카서스 다국가 투어 상품 구성</td></tr>
+          <tr><td>contexttravel.com</td><td>소규모 프리미엄 투어의 가이드 소개, 후기 활용 방식</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="p4">4. 사이트맵 및 메뉴 구성</h2>
+      <p>메뉴는 투어 유형 중심으로 구성하고, 국가 정보는 Destinations 메뉴로 분리함. 처음 방문한 고객이 여행 조건으로 상품을 찾을 수 있도록 All Tours를 보조 경로로 둠.</p>
+      <div class="sitemap" role="img" aria-label="사이트맵: 메뉴 4개(Tours, Destinations, About Envoy, Contact)와 상단 Plan Your Trip 버튼">
+        <div class="sm-root"><b>envoytours.com</b><span class="sm-cta">Plan Your Trip</span></div>
+        <div class="sm-cols">
+          <div class="sm-col"><h5>Tours</h5><ul>
+            <li>All Tours <small>필터</small></li>
+            <li>Boutique Journey</li>
+            <li>Christian Heritage</li>
+            <li>Day Tours</li>
+            <li>Custom and Private</li>
+            <li class="later">Trekking <small>상품 개발 후</small></li>
+            <li class="later">Tour Calendar <small>후속 기능</small></li>
+          </ul></div>
+          <div class="sm-col"><h5>Destinations</h5><ul>
+            <li>Georgia</li><li>Armenia</li><li>Caucasus</li>
+          </ul></div>
+          <div class="sm-col"><h5>About Envoy</h5><ul>
+            <li>Our Story</li><li>Envoy Way</li><li>Our Impact</li>
+          </ul></div>
+          <div class="sm-col"><h5>Contact</h5><ul>
+            <li>Contact Us</li><li>Group Inquiry</li><li>Partners (B2B)</li>
+          </ul></div>
+        </div>
+      </div>
+      <p class="meta">실선: 1차 공개 메뉴 · 점선: 후속 추가</p>
+      <ul>
+        <li><b>All Tours</b>: 전체 상품 목록. Day / Multi-day, Group / Private, 국가 필터 제공</li>
+        <li><b>Boutique Journey</b>: 메뉴에 "소그룹 다일 여행(Small-group multi-day journeys)" 설명 병기</li>
+        <li><b>Trekking</b>: 상품 개발 후 공개 시점에 메뉴 추가</li>
+        <li><b>Plan Your Trip</b>: 상단 공통 버튼. 상품을 선택하지 않은 고객의 여행 문의 양식으로 연결</li>
+        <li><b>Partners (B2B)</b>: 여행사 전용 문의 창구</li>
+        <li><b>Tour Calendar</b>: 데이 투어 운영 요일과 다일 여정 출발일 통합 달력. 후속 기능으로 추가(9항 참조)</li>
+        <li>기존 메뉴 통합: Find Us는 Contact Us로, About Georgia/Armenia는 Destinations로, Donation은 Our Impact로 통합</li>
+      </ul>
+
+      <h2 id="p5">5. 홈페이지 구성</h2>
+      <p>대표 상품 소개, 신뢰 요소, 계열 서비스 연계 순으로 구성함. <a href="wireframes/home.html">홈 와이어프레임 보기</a></p>
+      <ol>
+        <li><b>메인 비주얼</b>: 대표 상품 슬라이더(상품별 View Tour 버튼), 브랜드 헤드라인 1행</li>
+        <li><b>유형별 투어</b>: Boutique Journey · Christian Heritage · Day Tours · Custom and Private, All Tours 바로가기</li>
+        <li><b>Featured Tours</b>: 상품 카드 4~6개(사진, 기간, 출발일, 시작 가격). 다일 대표 상품 중심, 데이 투어 1~2개 포함</li>
+        <li><b>Why Travel with Envoy</b>: 국가별 현지 운영 이력(근거 확인 후 표기), 현지 가이드, 소규모 그룹, 후기 및 수상 이력</li>
+        <li><b>고객 후기</b>: TripAdvisor·Google 평점, 상세 후기 2~3건</li>
+        <li><b>Destinations</b>: Georgia, Armenia, Caucasus</li>
+        <li><b>Our Impact</b>: Envoy Mission 사례 1건(사진 포함), 상세 페이지 연결</li>
+        <li><b>단체·파트너 문의</b>: 교회·기업·여행사 단체 여행 안내, Group Inquiry 및 Partners 연결</li>
+        <li><b>Stay with Envoy</b>: 올드 트빌리시 Envoy Hostel과 루프탑 Cafe 소개</li>
+        <li><b>News·Instagram</b>: 최근 투어 사진 및 행사 소식</li>
+        <li><b>푸터</b>: 트빌리시·예레반 사무소, WhatsApp, 예약 약관, 호스텔 사이트 링크</li>
+      </ol>
+      <ul><li>정기 업데이트 영역: 고객 후기, Instagram, 소식, 추천 상품</li></ul>
+
+      <h2 id="p6">6. 투어 카테고리 및 대표 상품</h2>
+      <ul>
+        <li>상품을 시그니처, 정기, 프라이빗·맞춤으로 구분하고, 국가는 필터로 활용함</li>
+        <li>상품 통합은 개수가 아닌 실제 운영 조건을 기준으로 함. 일정·포함 사항·운영 조건이 같은 그룹·프라이빗 상품은 가격 옵션으로 통합하고, 차이가 큰 경우 별도 상품으로 유지함</li>
+      </ul>
+      <div class="tbl"><table>
+        <thead><tr><th>구분</th><th>메뉴</th><th>상품</th><th>역할</th></tr></thead>
+        <tbody>
+          <tr><td>시그니처</td><td>Boutique Journey</td><td><b>Envoy Boutique Journey</b>: 조지아·아르메니아 9박 10일, 8~12명 소그룹 다일 여행. 추후 Getaway·Discovery 투어 재구성 후 추가</td><td>홈 대표 상품</td></tr>
+          <tr><td>시그니처</td><td>Christian Heritage</td><td><b>Georgia &amp; Armenia Christian Heritage</b>: 11박 12일, 14명 이상 단체, 성 니노에서 계몽자 성 그레고리까지</td><td>홈 대표 상품, 단체·여행사 주력 상품</td></tr>
+          <tr><td>정기</td><td>Day Tours</td><td>기존 데이 투어, 시티 워크, 국경 간 당일 투어, 겨울 투어. 일부 파트너 운영 가능</td><td>입문 상품, 트빌리시 체류 고객 대상</td></tr>
+          <tr><td>프라이빗·맞춤</td><td>Custom and Private</td><td>맞춤 여행, 프라이빗 옵션, 공항 픽업, 차량(기사 포함), 가이드</td><td>고부가 문의</td></tr>
+          <tr><td>시그니처(개발 예정)</td><td>Trekking</td><td>신규 상품군(예: 카즈베기, 스바네티, 딜리잔). 상품 개발 후 메뉴 추가</td><td>액티비티 중심 여행자 대상</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li>Destinations: Georgia, Armenia, Caucasus(두 국가 연계 상품은 Caucasus에 분류)</li>
+        <li>테마 태그: 와인·미식, 겨울, 역사, 가족</li>
+        <li>가격 표기 통화: USD(추후 확정)</li>
+        <li>가격 기준 표기: 1인 요금인지 차량·그룹 전체 요금인지 상품마다 명확히 표시</li>
+        <li>파트너 운영 투어에도 동일한 상세 페이지 기준을 적용하며, 고객 문의는 Envoy가 직접 접수함</li>
+      </ul>
+
+      <h2 id="p7">7. 투어 상세 페이지 템플릿</h2>
+      <ul>
+        <li>공통 항목은 전 상품에 적용하고, 선택 항목은 상품 특성에 따라 적용하여 데이 투어 페이지가 과도하게 길어지지 않도록 함</li>
+        <li>첫 화면에서 가격, 운영 정보, 핵심 포함 사항 요약을 확인할 수 있도록 구성</li>
+        <li>썸네일 갤러리 대신 일정별 대형 사진 배치</li>
+      </ul>
+      <p><a href="wireframes/tour-detail.html">상품 상세 와이어프레임 보기</a></p>
+      <h4>공통 항목</h4>
+      <ol>
+        <li>대표 사진, 투어명, 한 줄 소개, 태그</li>
+        <li>가격 정보: 그룹/프라이빗 가격 및 요금 기준(1인 또는 차량·그룹 전체), Request a Booking(주 버튼), WhatsApp(보조)</li>
+        <li>운영 정보: 기간, 운영 요일 또는 시즌, 출발 장소, 인원, 가이드 언어, 난이도</li>
+        <li>핵심 포함 사항 요약</li>
+        <li>하이라이트(4~6개)</li>
+        <li>일정(다일 상품은 일자별, 데이 투어는 시간대별)</li>
+        <li>포함·불포함 사항</li>
+        <li>출발일·운영 요일 및 기타 날짜 문의</li>
+        <li>예약 조건: 예약·취소 약관, FAQ</li>
+        <li>고객 후기</li>
+        <li>관련 투어</li>
+      </ol>
+      <h4>선택 항목(상품별 적용)</h4>
+      <ul>
+        <li>숙박 정보(다일 상품)</li>
+        <li>경로 지도</li>
+        <li>가이드·운영팀 소개</li>
+        <li>Our Impact: 해당 여정의 사회적 기여 내용</li>
+        <li>Stay with Envoy: 투어 전후 Envoy Hostel 숙박 안내(다일 상품, 국경 간 투어)</li>
+        <li>여행 준비 정보: 준비물, 교회 방문 복장, 여권, 날씨</li>
+      </ul>
+      <h4>기타 적용 기준</h4>
+      <ul>
+        <li>모바일 화면 하단에 가격 및 Request a Booking 버튼 고정</li>
+        <li>대표 상품 2종은 기존 국문 상품 페이지 내용을 영문으로 전환하여 본 템플릿에 적용</li>
+      </ul>
+
+      <h2 id="p8">8. 문의 및 예약 흐름</h2>
+      <ul><li>사이트의 방향(Discover and Inquire)에 맞춰 버튼을 목적별로 구분함</li></ul>
+      <div class="tbl"><table>
+        <thead><tr><th>버튼</th><th>위치</th><th>역할</th></tr></thead>
+        <tbody>
+          <tr><td>Plan Your Trip</td><td>상단 공통 버튼, Custom and Private</td><td>상품 미선택 고객의 여행·맞춤 여행 문의</td></tr>
+          <tr><td>Request a Booking</td><td>투어 상세 페이지(주 버튼)</td><td>특정 상품·날짜 예약 요청</td></tr>
+          <tr><td>WhatsApp</td><td>전 페이지 보조 배치</td><td>간단한 문의용 보조 연락 수단</td></tr>
+        </tbody>
+      </table></div>
+      <h4>예약 흐름</h4>
+      <ol>
+        <li>접수: 상품, 날짜, 인원, 그룹·프라이빗 선택 후 요청 양식 제출(현행 12개 항목에서 약 7개로 축소). 고객 접수 확인 메일 및 담당자 알림 발송</li>
+        <li>가능 여부 확인: 가이드·차량 배정 확인, 마감 시 대체 날짜 제안</li>
+        <li>결제: 예약금 또는 전액 결제 안내(결제 방식 추후 확정)</li>
+        <li>예약 확정: 바우처 및 미팅 장소 안내</li>
+        <li>출발 전 안내: 픽업, 날씨, 준비물(이메일·WhatsApp)</li>
+        <li>투어 후: 후기 요청, 추가 투어 및 루프탑 Cafe 안내</li>
+      </ol>
+      <h4>문의 양식</h4>
+      <ul><li>공통 양식 1종을 기본으로 하고, 용도별로 필요한 항목만 다르게 구성함. <a href="wireframes/plan-your-trip.html">문의 양식 와이어프레임 보기</a></li></ul>
+      <div class="tbl"><table>
+        <thead><tr><th>용도</th><th>배치 위치</th><th>추가 항목</th></tr></thead>
+        <tbody>
+          <tr><td>Request a Booking</td><td>투어 상세 페이지</td><td>상품명, 희망 날짜, 그룹·프라이빗</td></tr>
+          <tr><td>Plan Your Trip</td><td>상단 공통 버튼, Custom and Private, Contact</td><td>여행 기간, 관심 지역·테마, 예산</td></tr>
+          <tr><td>Group Inquiry</td><td>대표 상품 페이지, Contact</td><td>단체명, 단체 유형(교회·기업 등), 예상 인원</td></tr>
+          <tr><td>Partners (B2B)</td><td>Contact, 대표 상품 페이지</td><td>회사명, 국가, 협업 형태</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="p9">9. 주요 기능 요구사항</h2>
+      <p>첫 공개는 상품 탐색과 문의 접수에 집중하고, 운영 준비가 필요한 연동 기능은 사용 도구와 관리 담당 확정 후 후속 적용함.</p>
+      <h4>1차 공개</h4>
+      <div class="tbl"><table>
+        <thead><tr><th>구분</th><th>기능</th></tr></thead>
+        <tbody>
+          <tr><td>상품 탐색</td><td>유형별 메뉴, All Tours 목록 및 필터(Day / Multi-day, Group / Private, 국가)</td></tr>
+          <tr><td>상품 상세</td><td>공통·선택 항목 기반 상세 페이지, 모바일 하단 고정 바(가격, Request a Booking)</td></tr>
+          <tr><td>문의 접수</td><td>공통 양식 기반 문의 4종, 고객 접수 확인 메일, WhatsApp 링크</td></tr>
+          <tr><td>담당자 알림</td><td>문의 접수 시 담당자 이메일 알림</td></tr>
+          <tr><td>콘텐츠 관리</td><td>CMS 기반 구축. 상품, 가격, 출발일, 소식을 비개발자가 직접 수정</td></tr>
+          <tr><td>법적 고지</td><td>개인정보 처리방침, 쿠키 동의, 예약·취소 약관</td></tr>
+        </tbody>
+      </table></div>
+      <h4>후속 기능</h4>
+      <div class="tbl"><table>
+        <thead><tr><th>기능</th><th>선행 조건</th></tr></thead>
+        <tbody>
+          <tr><td>Tour Calendar(통합 달력)</td><td>출발일·운영 요일 관리 담당 확정</td></tr>
+          <tr><td>TripAdvisor·Google 후기, Instagram 연동</td><td>연동 도구 확정</td></tr>
+          <tr><td>결제 링크 연동, 온라인 즉시 결제</td><td>결제 방식 및 결제 수단 확정</td></tr>
+          <tr><td>WhatsApp·OTA·파트너 요청 통합 관리</td><td>사용 도구 및 관리 담당 확정</td></tr>
+          <tr><td>상품 소개서(PDF) 다운로드</td><td>파트너용 자료 제작</td></tr>
+          <tr><td>호스텔 사이트 투어 카드 연동</td><td>호스텔 사이트 리뉴얼</td></tr>
+          <tr><td>Trekking 메뉴</td><td>트레킹 상품 개발</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="p10">10. 디자인 방향</h2>
+      <ul>
+        <li>사진 중심의 대형 비주얼과 충분한 여백으로 코카서스 현지의 분위기 전달</li>
+        <li>모바일 화면을 기준으로 설계한 후 PC 화면으로 확장</li>
+        <li>상품 카드, 상세 페이지, 버튼 등 공통 요소를 컴포넌트로 표준화하고 호스텔 사이트와 동일한 디자인 체계 적용</li>
+        <li>버튼 위계 구분: 주 버튼(Request a Booking, Plan Your Trip)과 보조 연락 수단(WhatsApp)을 시각적으로 구분</li>
+        <li>Envoy BI(로고, 컬러, 서체) 적용. BI 확정 전에는 임시 안으로 진행하고 확정 후 교체</li>
+      </ul>
+
+      <h2 id="p11">11. 콘텐츠 계획</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>콘텐츠</th><th>주요 내용</th><th>담당</th></tr></thead>
+        <tbody>
+          <tr><td>투어 상세 콘텐츠</td><td>사진, 영상, 이야기, 일정, 가격 및 요금 기준, 출발일, 포함 사항</td><td>Marine</td></tr>
+          <tr><td>기존 상품 정리</td><td>운영 조건 기준의 상품 통합·유지·폐지 결정</td><td>Marine</td></tr>
+          <tr><td>대표 상품 영문 페이지</td><td>Envoy Boutique Journey, Georgia &amp; Armenia Christian Heritage 국문 페이지의 영문 전환(초안 작성됨)</td><td>Ryan, Marine</td></tr>
+          <tr><td>회사 소개 콘텐츠 및 사진</td><td>About Envoy, Our Story, Envoy Way, Our Impact, 국가별 현지 운영 이력</td><td>Erik, Annie, Ryan</td></tr>
+          <tr><td>Destinations</td><td>조지아·아르메니아 소개(기존 About Georgia/Armenia 개편)</td><td>추후 지정</td></tr>
+          <tr><td>고객 후기</td><td>홈·상세 페이지용 대표 후기 선정</td><td>추후 지정</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="p12">12. 계열 서비스 연계(Envoy Hostel, 루프탑 Cafe)</h2>
+      <ul>
+        <li>투어 사이트와 호스텔 사이트는 별도 운영하되 동일 브랜드로 표현</li>
+        <li>메뉴 외에 콘텐츠 내에도 연계 링크 배치</li>
+        <li>루프탑 Cafe 명칭: Common Ground Cafe(추후 확정)</li>
+      </ul>
+      <div class="tbl"><table>
+        <thead><tr><th>배치 위치</th><th>연계 내용</th></tr></thead>
+        <tbody>
+          <tr><td>다일 여정·국경 간 투어 상세 페이지</td><td>Stay with Envoy: 투어 전후 숙박, 출발 전날 루프탑 Cafe 이용</td></tr>
+          <tr><td>홈페이지</td><td>Stay with Envoy 섹션</td></tr>
+          <tr><td>About Envoy</td><td>Our Story, Envoy Way, Our Impact를 호스텔 사이트와 동일 문안으로 공유</td></tr>
+          <tr><td>투어 후 안내 메시지</td><td>루프탑 Cafe 안내</td></tr>
+          <tr><td>호스텔 사이트</td><td>객실 페이지, 홈, Tbilisi Guide에 추천 투어 노출</td></tr>
+        </tbody>
+      </table></div>
+      <ul><li>호스텔 재오픈(2027년 4월) 전까지 호스텔 링크에 "reopening soon" 표기</li></ul>
+
+      <h2 id="p13">13. 진행 단계</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>단계</th><th>주요 내용</th><th>일정</th></tr></thead>
+        <tbody>
+          <tr><td>1. 사이트 구조 기획</td><td>사이트맵, 메뉴, 상품 구성, 페이지 구성, 기능 요구사항(본 기획안)</td><td>진행 중</td></tr>
+          <tr><td>2. 비주얼 디자인</td><td>홈 및 투어 상세 페이지 디자인. BI 확정 전 착수 가능하며, BI 확정 후 최종 적용</td><td>추후 확정</td></tr>
+          <tr><td>3. 콘텐츠 제작</td><td>투어 상세 콘텐츠(Marine), 회사 소개 콘텐츠 및 사진(Erik, Annie, Ryan). 상세 내용은 11항 참조</td><td>추후 확정</td></tr>
+          <tr><td>4. 1차 구축 및 공개</td><td>상품 탐색, 상세 페이지, 문의 접수, 담당자 알림, CMS 구축 및 콘텐츠 등록, 기기별 점검 후 공개</td><td>추후 확정</td></tr>
+          <tr><td>5. 후속 기능 적용</td><td>통합 달력, 후기·Instagram 연동, 결제 연동, 채널 통합 관리 등(9항 참조). 사용 도구 및 관리 담당 확정 후 순차 적용</td><td>추후 확정</td></tr>
+          <tr><td>6. 최적화 및 운영 방안</td><td>검색 최적화, 성과 측정, 운영·관리 체계 수립</td><td>추후 확정</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- TOURS WIREFRAMES -->
+    <section class="view" id="v-tours-wireframes" data-en-ready="false">
+      <p class="en-note">The English version of this page will be added after review. The wireframes themselves use English site copy.</p>
+      <p class="eyebrow">Envoy Tours · 02</p>
+      <h1>와이어프레임</h1>
+      <p class="lede">기획안 5~8항의 페이지 구성을 실제 웹 화면 형태로 정리함. 각 화면은 클릭하여 다른 화면으로 이동할 수 있으며, 색·서체·BI 등 비주얼 디자인은 다음 단계에서 적용함.</p>
+      <ul class="legend">
+        <li>회색 박스: 사진·영상 자리</li>
+        <li>[TBD]: 추후 반영할 정보</li>
+        <li>검은 태그: 섹션 설명</li>
+        <li>점선 테두리: 상품별 선택 항목</li>
+      </ul>
+
+      <h2>데스크톱</h2>
+      <div class="wf-grid">
+        <a class="wf" href="wireframes/home.html"><div class="thumb" aria-hidden="true"><i></i><i></i><i style="width:60%"></i></div><b>홈</b><span>메인 비주얼부터 푸터까지 11개 섹션</span></a>
+        <a class="wf" href="wireframes/all-tours.html"><div class="thumb" aria-hidden="true"><i></i><i></i><i style="width:60%"></i></div><b>All Tours</b><span>여행 조건 필터와 상품 카드 목록</span></a>
+        <a class="wf" href="wireframes/tour-detail.html"><div class="thumb" aria-hidden="true"><i></i><i></i><i style="width:60%"></i></div><b>상품 상세</b><span>공통 11항목과 선택 항목. 예시: Envoy Boutique Journey</span></a>
+        <a class="wf" href="wireframes/plan-your-trip.html"><div class="thumb" aria-hidden="true"><i></i><i></i><i style="width:60%"></i></div><b>Plan Your Trip 문의 양식</b><span>공통 양식 기반, 용도별 추가 항목</span></a>
+        <a class="wf" href="wireframes/about.html"><div class="thumb" aria-hidden="true"><i></i><i></i><i style="width:60%"></i></div><b>About Envoy</b><span>Our Story, Envoy Way, Our Impact</span></a>
+        <a class="wf" href="wireframes/contact.html"><div class="thumb" aria-hidden="true"><i></i><i></i><i style="width:60%"></i></div><b>Contact</b><span>사무소, 연락 수단, 단체·파트너 문의</span></a>
+      </div>
+      <h2>모바일</h2>
+      <div class="wf-grid">
+        <a class="wf m" href="wireframes/mobile-home.html"><div class="thumb" aria-hidden="true"><i></i><i></i><i></i><i></i></div><b>홈</b><span>첫 화면 상품 배너와 문의 버튼</span></a>
+        <a class="wf m" href="wireframes/mobile-detail.html"><div class="thumb" aria-hidden="true"><i></i><i></i><i></i><i></i></div><b>상품 상세</b><span>하단 고정 바(가격, Request a Booking)</span></a>
+      </div>
+    </section>
+
+    <!-- TOURS PROGRESS -->
+    <section class="view" id="v-tours-progress" data-en-ready="false">
+      <p class="en-note">The English version of this page will be added after review. The Korean content is shown below.</p>
+      <p class="eyebrow">Envoy Tours</p>
+      <h1>진행 현황</h1>
+      <p class="lede">단계별 진행 상태와 산출물을 정리함. 각 단계의 산출물은 확정되는 대로 본 페이지에 추가함.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>단계</th><th>상태</th><th>산출물</th></tr></thead>
+        <tbody>
+          <tr><td>1. 사이트 구조 기획</td><td><span class="pill go">진행 중</span></td><td><a href="#tours-plan">기획안</a>, <a href="#tours-wireframes">와이어프레임 8종</a></td></tr>
+          <tr><td>2. 비주얼 디자인</td><td><span class="pill wait">추후 확정</span></td><td>홈 및 투어 상세 페이지 디자인 시안</td></tr>
+          <tr><td>3. 콘텐츠 제작</td><td><span class="pill wait">추후 확정</span></td><td>투어 상세 콘텐츠, 회사 소개 콘텐츠 및 사진</td></tr>
+          <tr><td>4. 1차 구축 및 공개</td><td><span class="pill wait">추후 확정</span></td><td>envoytours.com 1차 공개</td></tr>
+          <tr><td>5. 후속 기능 적용</td><td><span class="pill wait">추후 확정</span></td><td>통합 달력, 후기·Instagram 연동, 결제 연동 등</td></tr>
+          <tr><td>6. 최적화 및 운영 방안</td><td><span class="pill wait">추후 확정</span></td><td>검색 최적화, 성과 측정, 운영·관리 체계</td></tr>
+        </tbody>
+      </table></div>
+      <h2>업데이트 기록</h2>
+      <ul class="log">
+        <li><time>2026-11-22</time>와이어프레임 8종 공개(데스크톱 6종, 모바일 2종)</li>
+        <li><time>2026-11-21</time>웹사이트 리뉴얼 기획안 작성(13개 항목)</li>
+      </ul>
+    </section>
+
+    <!-- HOSTEL -->
+    <section class="view" id="v-hostel" data-en-ready="false">
+      <p class="en-note">The English version of this page will be added after review. The Korean content is shown below.</p>
+      <p class="eyebrow">Envoy Hostel</p>
+      <h1>Envoy Hostel 웹사이트 리뉴얼</h1>
+      <p class="lede">올드 트빌리시에 위치한 Envoy Hostel을 부티크 호스텔로 재오픈함에 따라, envoyhostel.com을 트빌리시 중심의 숙박 사이트로 리뉴얼함. 루프탑 Cafe는 호스텔과 하나의 공간으로 소개함.</p>
+      <div class="tbl"><table>
+        <tbody>
+          <tr><td>대상 사이트</td><td>envoyhostel.com</td></tr>
+          <tr><td>호스텔 재오픈</td><td>2027년 4월</td></tr>
+          <tr><td>착수 시점</td><td>Envoy Tours 사이트 기획 완료 후</td></tr>
+          <tr><td>공유 콘텐츠</td><td>About Envoy, Envoy Way, Our Impact, Envoy BI</td></tr>
+        </tbody>
+      </table></div>
+      <div class="empty">
+        <b>기획안 및 와이어프레임 준비 중</b>
+        <p style="margin:6px 0 0;color:var(--muted)">착수 후 Envoy Tours와 동일한 구성(기획안, 와이어프레임, 진행 현황)으로 본 페이지에 추가함.</p>
+      </div>
+    </section>
+  </main>
+</div>
+<footer class="f">Envoy Tours · Envoy Hostel · Tbilisi, Georgia</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var views = ["overview", "tours-plan", "tours-wireframes", "tours-progress", "hostel"];
+  function setLang(l) {
+    root.setAttribute("data-lang", l);
+    root.setAttribute("lang", l === "en" ? "en" : "ko");
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang") === l));
+    });
+    try { localStorage.setItem("envoyHubLang", l); } catch (e) {}
+  }
+  var saved = "ko";
+  try { saved = localStorage.getItem("envoyHubLang") || "ko"; } catch (e) {}
+  setLang(saved === "en" ? "en" : "ko");
+  document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-set-lang")); });
+  });
+
+  function show() {
+    var h = (location.hash || "").replace("#", "");
+    if (views.indexOf(h) < 0) h = "overview";
+    views.forEach(function (v) {
+      document.getElementById("v-" + v).classList.toggle("on", v === h);
+    });
+    document.querySelectorAll(".side a").forEach(function (a) {
+      if (a.getAttribute("href") === "#" + h) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", show);
+  show();
+
+  document.querySelectorAll("[data-jump]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var t = document.getElementById(a.getAttribute("data-jump"));
+      if (t && location.hash === "#tours-plan") { e.preventDefault(); t.scrollIntoView({ behavior: "smooth", block: "start" }); }
+      else if (t) { setTimeout(function () { t.scrollIntoView({ block: "start" }); }, 0); }
+    });
+  });
+})();
+</script>
