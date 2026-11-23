@@ -184,7 +184,10 @@ footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-lef
     </div>
     <div>
       <h3>Envoy Hostel</h3>
-      <nav><a href="#hostel"><span data-ko>착수 예정</span><span data-en>Upcoming</span></a></nav>
+      <nav>
+        <a href="#hostel-plan"><span data-ko>기획안</span><span data-en>Plan</span><span class="tag">01</span></a>
+        <a href="#hostel-progress"><span data-ko>진행 현황</span><span data-en>Progress</span></a>
+      </nav>
     </div>
   </aside>
 
@@ -195,7 +198,7 @@ footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-lef
       <p class="eyebrow">Overview</p>
       <h1>Envoy 웹사이트 리뉴얼 프로젝트</h1>
       <p class="lede">Envoy Tours와 Envoy Hostel 두 웹사이트의 리뉴얼 기획안, 와이어프레임, 이후 디자인 및 구축 진행 상황을 본 페이지에서 공유함.</p>
-      <p class="meta">최종 업데이트 2026-11-22</p>
+      <p class="meta">최종 업데이트 2026-11-23</p>
 
       <div class="proj">
         <div class="card">
@@ -210,11 +213,14 @@ footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-lef
           </div>
         </div>
         <div class="card">
-          <span class="pill wait">착수 예정</span>
+          <span class="pill go">진행 중 · 1단계 사이트 구조 기획</span>
           <h3>Envoy Hostel</h3>
           <span class="url">envoyhostel.com</span>
-          <p style="margin:0">올드 트빌리시 부티크 호스텔과 루프탑 Cafe의 웹사이트 리뉴얼. 투어 사이트 기획 완료 후 착수하며, 호스텔은 2027년 4월 재오픈 예정임.</p>
-          <div class="links"><a class="btn" href="#hostel">상세 보기</a></div>
+          <p style="margin:0">올드 트빌리시 부티크 호스텔과 루프탑 Cafe의 웹사이트 리뉴얼. 호스텔은 2027년 4월 재오픈 예정임.</p>
+          <div class="links">
+            <a class="btn solid" href="#hostel-plan">기획안</a>
+            <a class="btn" href="#hostel-progress">진행 현황</a>
+          </div>
         </div>
       </div>
 
@@ -230,6 +236,7 @@ footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-lef
 
       <h2>업데이트 기록</h2>
       <ul class="log">
+        <li><time>2026-11-23</time>Envoy Hostel 웹사이트 리뉴얼 기획안 작성</li>
         <li><time>2026-11-22</time>Envoy Tours 와이어프레임 Destinations 2종 추가</li>
         <li><time>2026-11-22</time>Envoy Tours 와이어프레임 8종 공개</li>
         <li><time>2026-11-22</time>리뉴얼 프로젝트 페이지 개설</li>
@@ -596,23 +603,110 @@ footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-lef
       </ul>
     </section>
 
-    <!-- HOSTEL -->
-    <section class="view" id="v-hostel" data-en-ready="false">
+    <!-- HOSTEL PLAN -->
+    <section class="view" id="v-hostel-plan" data-en-ready="false">
+      <p class="en-note">English version coming soon.</p>
+      <p class="eyebrow">Envoy Hostel · 01</p>
+      <h1>엔보이 호스텔 웹사이트 리뉴얼 기획안</h1>
+      <p class="lede">본 기획안은 Envoy Hostel 웹사이트(envoyhostel.com) 리뉴얼의 배경과 목적, 사이트 구조, 주요 페이지 구성, 예약·문의 흐름, 진행 단계를 정리함. 호스텔은 2027년 4월 구 트빌리시(Old Tbilisi) 부티크 호스텔로 재오픈하며, 루프탑 Cafe를 호스텔의 일부 공간으로 함께 다룸.</p>
+      <p class="meta">작성 2026-11-23</p>
+      <nav class="toc" aria-label="목차">
+        <a href="#hostel-plan" data-jump="hp1"><span>1</span>리뉴얼 배경 및 목적</a>
+        <a href="#hostel-plan" data-jump="hp2"><span>2</span>타깃 고객</a>
+        <a href="#hostel-plan" data-jump="hp3"><span>3</span>벤치마킹</a>
+        <a href="#hostel-plan" data-jump="hp4"><span>4</span>사이트맵 및 메뉴 구성</a>
+        <a href="#hostel-plan" data-jump="hp5"><span>5</span>홈페이지 구성</a>
+        <a href="#hostel-plan" data-jump="hp6"><span>6</span>객실 구성 및 객실 페이지</a>
+        <a href="#hostel-plan" data-jump="hp7"><span>7</span>루프탑 Cafe 페이지 구성</a>
+        <a href="#hostel-plan" data-jump="hp8"><span>8</span>예약 및 문의 흐름</a>
+        <a href="#hostel-plan" data-jump="hp9"><span>9</span>투어 연계 및 Old Tbilisi Guide</a>
+        <a href="#hostel-plan" data-jump="hp10"><span>10</span>주요 기능 요구사항</a>
+        <a href="#hostel-plan" data-jump="hp11"><span>11</span>디자인 방향</a>
+        <a href="#hostel-plan" data-jump="hp12"><span>12</span>콘텐츠 계획</a>
+        <a href="#hostel-plan" data-jump="hp13"><span>13</span>진행 단계</a>
+      </nav>
+<h2 id="hp1">1. 리뉴얼 배경 및 목적</h2>
+<h4>현행 사이트의 주요 문제점</h4>
+<ul><li>예레반·트빌리시 지점을 같은 단계에 둔 지점별 메뉴 구조로, 트빌리시 단일 운영 체제와 맞지 않음</li><li>공식 사이트 방문객을 직접 예약으로 유도하는 장치(예약 버튼, 직접 예약 혜택)가 없음</li><li>사진과 디자인이 오래되어 부티크 호스텔의 분위기와 여행자 교류의 활기가 전달되지 않음</li><li>후기, 소식, Instagram 등 갱신 콘텐츠가 드러나지 않아 운영 중인 사이트라는 인상이 약함</li><li>운영 이력, 평점, 수상 이력 등 신뢰 요소가 페이지 하단에 배치되어 있음</li><li>투어 연계가 메뉴 링크 수준에 그침</li><li>Donation이 단순 기부 메뉴로 운영되어 브랜드 가치가 전달되지 않음</li></ul>
+<h4>리뉴얼 목표</h4>
+<div class="tbl"><table><thead><tr><th>목표</th><th>주요 실행 방안</th></tr></thead><tbody><tr><td>직접 예약 전환율 제고</td><td>헤더 고정 Book Now, 모바일 하단 고정 예약 바, 예약 위젯 주변 직접 예약 혜택 표기</td></tr><tr><td>객실 정보 명확화</td><td>Dormitory와 Ensuite 2개 유형으로 구분, 객실 카드의 정보 형식 통일, 층별 안내와 객실 공통 설비 정리</td></tr><tr><td>부티크 브랜드 이미지 구축</td><td>공간·사람·실제 경험 중심의 사진, 구 트빌리시 건물의 이야기 전달</td></tr><tr><td>고객 신뢰도 제고</td><td>운영 이력, 플랫폼 평점, 수상 이력, 투숙객 이야기를 홈과 주요 페이지에 배치</td></tr><tr><td>루프탑 Cafe 독립 소개</td><td>투숙객 외 방문객도 이용하는 공간으로 별도 메뉴·페이지 운영</td></tr><tr><td>투어 연계 강화</td><td>Tbilisi Guide, 객실 페이지, 홈에 추천 투어 노출</td></tr><tr><td>브랜드 가치 전달</td><td>Donation을 Our Impact로 개편, Envoy Mission 실제 사례 소개</td></tr><tr><td>모바일 우선 설계</td><td>모바일 첫 화면에 대표 사진과 Book Now 배치</td></tr></tbody></table></div>
+<h4>사이트 운영 기본 방향</h4>
+<ul><li>사이트 역할: 직접 예약 전환(Book Direct). OTA는 발견 채널, 공식 사이트는 전환 채널로 구분</li><li>포지셔닝: 구 트빌리시의 부티크 트래블 호스텔(Accessible Boutique). 숙박, Cafe, 투어가 한 건물 안에서 연결되는 경험 제시</li><li>사이트 구성: 투어 사이트와 별도 운영하되 Envoy 단일 브랜드로 통일하고, About Envoy·Envoy Way·Our Impact 콘텐츠는 공유</li><li>예약 시스템: 기존 Cloudbeds 예약 엔진 연동 유지</li><li>운영 언어: 영문(추후 확정)</li></ul>
+<h2 id="hp2">2. 타깃 고객</h2>
+<p>도미토리는 OTA를 통해 객실 가동률을 채우고, 개인실·가족·장기 숙박 고객은 공식 사이트 직접 예약으로 수익성을 확보함. 공식 사이트는 후자의 고객군을 중심으로 설계함.</p>
+<div class="tbl"><table><thead><tr><th>고객군</th><th>특성</th><th>주요 객실·상품</th><th>주요 채널</th></tr></thead><tbody><tr><td>개별 여행자·커플</td><td>안전, 청결, 프라이버시, 위치 중시</td><td>Double Ensuite, 직접 예약 혜택</td><td>공식 사이트</td></tr><tr><td>배낭여행자·청년 여행자</td><td>가격, 위치, 후기, 교류 분위기 비교</td><td>Dormitory</td><td>OTA 발견 후 공식 사이트 확인</td></tr><tr><td>가족·소규모 단체</td><td>한 객실 안에서의 편의와 안정감</td><td>Family Ensuite, 가족·도미토리 혼합 패키지</td><td>공식 사이트, 단체 문의</td></tr><tr><td>투어 연계 고객</td><td>투어 전후 숙박의 신뢰성</td><td>전 객실, 호스텔·투어 연계 상품</td><td>투어 사이트, 공식 사이트</td></tr><tr><td>장기 체류자·디지털 노마드</td><td>체류 효율, 업무 환경</td><td>Ensuite, 비수기 장기 체류 상품</td><td>공식 사이트</td></tr><tr><td>Cafe 방문객</td><td>구 트빌리시 관광 중 휴식·전망 공간 탐색</td><td>루프탑 Cafe</td><td>Google 지도, Instagram</td></tr></tbody></table></div>
+<h2 id="hp3">3. 벤치마킹</h2>
+<div class="tbl"><table><thead><tr><th>사이트</th><th>유형</th><th>참고 요소</th></tr></thead><tbody><tr><td><a href="https://hostelfabrika.com">Fabrika Hostel</a></td><td>트빌리시 호스텔</td><td>객실 유형 구분, 주요 지점까지의 도보 시간 위치 안내, 헤더 고정 예약 버튼. 현지 경쟁 비교 기준</td></tr><tr><td><a href="https://roomshotels.com/locations/tbilisi">Rooms Hotel Tbilisi</a></td><td>트빌리시 디자인 호텔</td><td>동일 형식의 객실 카드, 객실·헤더 예약 버튼의 단일 예약 단계 연결, 상단 메뉴의 투어 배치</td></tr><tr><td><a href="https://stambahotel.com">Stamba Hotel</a></td><td>트빌리시 디자인 호텔</td><td>건물의 역사를 중심으로 한 브랜드 스토리, 지역 파트너 카드 소개</td></tr><tr><td><a href="https://www.wombats-hostels.com">Wombat&#x27;s City Hostels</a></td><td>부티크 호스텔</td><td>도미토리·개인실 유형 구분, 도미토리 공통 설비 일괄 정리, 카페·바 독립 페이지, 단체 예약 문의</td></tr><tr><td><a href="https://staygenerator.com">Generator Hostels</a></td><td>디자인 호스텔</td><td>메인 화면의 직접 예약 혜택 제시, 루프탑 소개 문안, 언어·통화 선택</td></tr><tr><td><a href="https://thehoxton.com/london/shoreditch/hotels">The Hoxton</a></td><td>부티크 호텔</td><td>동네 추천 장소·이벤트 일정, 루프탑 독립 페이지, 예약 위젯 주변 직접 예약 혜택</td></tr><tr><td><a href="https://www.magdashotel.com/en">Magdas Hotel</a></td><td>사회적 기업 호텔</td><td>수치 기반 Impact 페이지, 사람 중심의 일관된 문안, 단순한 메인 메뉴</td></tr></tbody></table></div>
+<h4>적용 방향</h4>
+<ul><li>객실: Wombat&#x27;s의 유형 구분과 Rooms의 객실 카드 형식을 결합하여 면적·침대·수용 인원을 동일 형식으로 제시</li><li>예약: 헤더 고정 버튼과 객실별 버튼을 동일한 예약 단계로 연결하고, 직접 예약 혜택을 예약 위젯 주변에 배치</li><li>루프탑 Cafe: Rooms·The Hoxton처럼 숙박과 분리된 독립 페이지로 소개</li><li>지역 경험: Rooms·Stamba의 투어 메뉴와 The Hoxton의 동네 소개 방식을 참고하여 Envoy Tours 상품과 구 트빌리시 정보를 연결</li><li>브랜드 스토리: Stamba의 건물 이야기와 Magdas의 Impact 페이지를 참고하여 Envoy의 BAM 비전과 구 트빌리시 건물의 이야기를 함께 전달</li><li>현지 경쟁: Fabrika Hostel 대비 객실 정보의 깊이와 공간 소개의 차별점 확보</li></ul>
+<h2 id="hp4">4. 사이트맵 및 메뉴 구성</h2>
+<p>메뉴는 지점 중심에서 부티크 호스텔의 경험 요소(객실, Cafe, 트빌리시 경험, 브랜드) 중심으로 재구성하고, Book Now를 상단 공통 버튼으로 고정함.</p>
+<div class="tbl"><table><thead><tr><th>메인 메뉴</th><th>하위 메뉴</th></tr></thead><tbody><tr><td>Rooms</td><td>Dormitory Rooms, Ensuite Rooms, Floor Guide, Room Facilities, Common Areas</td></tr><tr><td>Cafe</td><td>Common Ground Cafe(루프탑)</td></tr><tr><td>Experience</td><td>Old Tbilisi Guide, Tours with Envoy, Events</td></tr><tr><td>About Envoy</td><td>Our Story, Envoy Way, Reviews &amp; Guest Stories, Our Impact</td></tr><tr><td>Contact</td><td>Location &amp; Getting Here, Airport Pickup, Contact Us</td></tr><tr><td>Book Now</td><td>상단 공통 버튼, 예약 엔진 연결</td></tr></tbody></table></div>
+<ul><li><b>Rooms</b>: Dormitory와 Ensuite 2개 유형으로 구분하고, 실제 객실 유형은 각 상세 페이지에서 제시. Floor Guide는 층별 객실·공용 공간 배치, Room Facilities는 객실 공통 설비 정리</li><li><b>Cafe</b>: 투숙객 외 방문객도 이용하는 독립 공간으로 별도 메뉴 운영. 명칭 Common Ground Cafe(추후 확정)</li><li><b>Experience</b>: 구 트빌리시 지역 소개와 Envoy Tours 추천 투어, 호스텔·Cafe 이벤트 일정</li><li><b>About Envoy</b>: 기존 하단에 있던 회사 소개와 신뢰 요소를 상단 메뉴로 이동</li><li><b>Book Now</b>: 전 페이지 상단 고정, 모바일은 하단 고정 예약 바로 제공</li><li>기존 메뉴 통합: Yerevan 지점 메뉴 제외, Room &amp; Rates는 Rooms로, Find Us는 Location &amp; Getting Here로, Travel Tips·About Georgia는 Old Tbilisi Guide로, Gallery는 각 페이지 사진으로, Donation은 Our Impact로, Tours는 Tours with Envoy로 통합</li></ul>
+<h2 id="hp5">5. 홈페이지 구성</h2>
+<p>브랜드 첫인상, 객실과 직접 예약, 공간 경험, 신뢰 요소, 투어 연계 순으로 구성함.</p>
+<ol><li><b>메인 비주얼</b>: 루프탑 전망·공간 사진 또는 영상, 브랜드 헤드라인 1행, 재오픈 안내(Reopening April 2027)</li><li><b>예약 바</b>: 체크인·체크아웃 날짜, 인원, Check Availability 버튼, 직접 예약 혜택 요약</li><li><b>Stay with Envoy</b>: 호스텔 소개 2~3문장(구 트빌리시 위치, 루프탑 전망, 숙박·Cafe·투어의 연결)</li><li><b>Rooms</b>: Dormitory·Ensuite 유형 카드(사진, 수용 인원, 시작 가격, View Rooms)</li><li><b>Why Book Direct</b>: 공식 사이트 예약 혜택 3~4개(추후 확정)</li><li><b>루프탑 Cafe</b>: 대표 사진, 소개 1문장, 운영 시간, Cafe 페이지 연결</li><li><b>신뢰 요소</b>: 운영 이력, 플랫폼 평점(Hostelworld·TripAdvisor 등), 수상 이력</li><li><b>투숙객 후기</b>: 상세 후기·투숙객 이야기 2~3건</li><li><b>Tours with Envoy</b>: 추천 투어 카드 3~4개, 투숙객 투어 혜택, 투어 사이트 연결</li><li><b>Old Tbilisi</b>: 주요 지점까지의 도보 시간, 지도, Old Tbilisi Guide 연결</li><li><b>Our Impact</b>: Envoy Mission 사례 1건(사진 포함), 상세 페이지 연결</li><li><b>Instagram·소식</b>: 최근 사진, 이벤트 소식</li><li><b>푸터</b>: 주소, 연락처, WhatsApp, 예약 약관, 투어 사이트 링크</li></ol>
+<ul><li>정기 업데이트 영역: 투숙객 후기, Instagram, 이벤트·소식, 추천 투어</li></ul>
+<h2 id="hp6">6. 객실 구성 및 객실 페이지</h2>
+<p>객실은 9실 36인 규모로 구성하며(추후 확정), Dormitory Rooms와 Ensuite Rooms 2개 페이지에서 유형별 객실 카드를 제시함.</p>
+<div class="tbl"><table><thead><tr><th>구분</th><th>객실 유형</th><th>객실 수</th><th>수용 인원</th></tr></thead><tbody><tr><td>Dormitory</td><td>8-Bed Dormitory</td><td>1</td><td>8</td></tr><tr><td>Dormitory</td><td>6-Bed Dormitory</td><td>2</td><td>12</td></tr><tr><td>Dormitory</td><td>4-Bed Dormitory</td><td>1</td><td>4</td></tr><tr><td>Dormitory</td><td>Accessible 4-Bed Dormitory</td><td>1</td><td>4</td></tr><tr><td>Ensuite</td><td>Double Ensuite</td><td>2</td><td>4</td></tr><tr><td>Ensuite</td><td>Family Ensuite</td><td>2</td><td>4</td></tr></tbody></table></div>
+<h4>객실 카드 공통 항목</h4>
+<ol><li>대표 사진(2~3장 슬라이드), 객실명</li><li>침대 구성, 수용 인원, 면적, 욕실 형태(객실 내·공용)</li><li>주요 설비 아이콘(침대 커튼, 개인 조명, 콘센트, 사물함 등)</li><li>시작 가격 및 요금 기준(침대당 또는 객실당)</li><li>Book Now(해당 객실이 선택된 예약 단계로 연결)</li></ol>
+<h4>객실 페이지 추가 항목</h4>
+<ul><li>Dormitory Rooms: 도미토리 공통 기준(침대 규격, 프라이버시 커튼, 개인 조명·콘센트, 대형 사물함, 욕실 위치), 여성 전용 여부(추후 확정)</li><li>Ensuite Rooms: 객실 내 욕실, 가족 단위 이용 안내, 장기 체류 상품 연결</li><li>Floor Guide: 층별 객실·공용 공간·루프탑 Cafe 배치도</li><li>Room Facilities: 침구, 사물함, Wi-Fi, 냉난방, 짐 보관, 접근성 등 객실 공통 설비</li><li>Common Areas: 라운지 등 투숙객 공용 공간(추후 확정)</li><li>객실 페이지 하단: 직접 예약 혜택, 체크인·체크아웃 시간, 하우스 규칙, 추천 투어</li><li>객실명은 OTA 등록명과 동일하게 운영</li></ul>
+<h2 id="hp7">7. 루프탑 Cafe 페이지 구성</h2>
+<p>루프탑 Cafe는 투숙객에게는 기본 제공 공간이자, 구 트빌리시 방문객이 Envoy를 처음 접하는 입구로 소개함. 숙박 페이지와 분리된 독립 페이지로 운영하며, 호스텔과 투어로 이어지는 동선을 함께 구성함.</p>
+<ol><li><b>메인 비주얼</b>: 루프탑 전망 사진(일몰 시간대), Cafe 명칭, 소개 1행</li><li><b>이용 정보</b>: 운영 시간, 위치(건물 출입구 안내), 투숙객 외 이용 가능 여부</li><li><b>공간 소개</b>: 전망, 좌석, 조명을 보여주는 대형 사진과 짧은 문안</li><li><b>대표 메뉴</b>: 커피, 조식, 조지아 와인 등 시그니처 메뉴 4~6개(추후 확정), 전체 메뉴 보기</li><li><b>이벤트</b>: 일몰 시간 모임, 주말 커뮤니티 이벤트 등 정기 프로그램 일정</li><li><b>투숙객 혜택</b>: 직접 예약 고객 대상 웰컴 드링크, 일몰 시간대 좌석 우선 안내 등(추후 확정)</li><li><b>후기·Instagram</b>: Google 후기, 방문객 사진</li><li><b>연계 안내</b>: Stay with Envoy(객실 연결), Tours with Envoy(투어 사이트 연결)</li></ol>
+<ul><li>좌석 예약 여부 및 방식: 추후 확정</li><li>명칭: Common Ground Cafe(추후 확정)</li></ul>
+<h2 id="hp8">8. 예약 및 문의 흐름</h2>
+<ul><li>사이트의 방향(Book Direct)에 맞춰 모든 페이지에서 한 번에 예약 단계로 이동할 수 있도록 구성함</li><li>객실 예약은 Cloudbeds 예약 엔진으로 연결하고, 단체·장기 체류·픽업은 별도 문의 양식으로 접수함</li></ul>
+<div class="tbl"><table><thead><tr><th>버튼</th><th>위치</th><th>역할</th></tr></thead><tbody><tr><td>Book Now</td><td>상단 고정, 모바일 하단 고정 바, 객실 카드</td><td>날짜·인원 선택 후 예약 엔진으로 이동</td></tr><tr><td>Check Availability</td><td>홈 예약 바, 객실 페이지</td><td>예약 가능 객실·요금 확인</td></tr><tr><td>Group &amp; Long Stay Inquiry</td><td>객실 페이지 하단, Contact</td><td>단체·장기 체류·패키지 문의</td></tr><tr><td>Request Pickup</td><td>Airport Pickup, 예약 확정 메일</td><td>공항·시내 픽업 요청</td></tr><tr><td>WhatsApp</td><td>전 페이지 보조 배치</td><td>간단한 문의용 보조 연락 수단</td></tr></tbody></table></div>
+<h4>예약 흐름</h4>
+<ol><li>객실 선택: 날짜·인원 입력, 객실 유형·요금 비교(직접 예약 혜택 표기)</li><li>예약·결제: 예약 엔진에서 투숙객 정보 입력 및 결제</li><li>예약 확정: 확정 메일(체크인 안내, 찾아오는 길, 픽업 요청 링크)</li><li>도착 전 안내: 구 트빌리시 진입로, 짐 운반 옵션, 추천 투어·루프탑 Cafe 안내(이메일·WhatsApp)</li><li>체크아웃 후: 후기 요청, 재방문 시 직접 예약 혜택 안내</li></ol>
+<h4>직접 예약 혜택</h4>
+<ul><li>OTA와의 가격 경쟁이 아닌 혜택으로 직접 예약 이유를 제시함</li><li>혜택 항목: 웰컴 드링크, Cafe 이용 혜택, 유연한 예약 변경, 투어 혜택(추후 확정)</li><li>표기 위치: 홈 예약 바 하단, Why Book Direct 섹션, 객실 페이지, 예약 엔진 진입 직전</li></ul>
+<h4>문의 양식</h4>
+<div class="tbl"><table><thead><tr><th>용도</th><th>배치 위치</th><th>입력 항목</th></tr></thead><tbody><tr><td>Group &amp; Long Stay Inquiry</td><td>객실 페이지, Contact</td><td>이름, 이메일, 희망 날짜, 인원, 문의 유형(단체·장기 체류·패키지), 요청 사항</td></tr><tr><td>Request Pickup</td><td>Airport Pickup</td><td>이름, 이메일, 도착일·시간, 항공편, 인원, 짐 수량</td></tr><tr><td>Contact Us</td><td>Contact</td><td>이름, 이메일, 문의 내용</td></tr></tbody></table></div>
+<h2 id="hp9">9. 투어 연계 및 Old Tbilisi Guide</h2>
+<ul><li>투어는 단순 메뉴 링크가 아닌, 트빌리시 체류 경험을 확장하는 콘텐츠로 각 페이지 안에 배치함</li><li>투어 상품 정보와 문의는 투어 사이트에서 관리하고, 호스텔 사이트에는 추천 투어 카드를 노출하여 투어 상세 페이지로 연결함</li></ul>
+<div class="tbl"><table><thead><tr><th>배치 위치</th><th>연계 내용</th></tr></thead><tbody><tr><td>홈페이지</td><td>Tours with Envoy 섹션: 추천 투어 카드 3~4개, 투숙객 투어 혜택</td></tr><tr><td>객실 페이지</td><td>체류 중 추천 데이 투어</td></tr><tr><td>Tours with Envoy</td><td>투숙객 대상 추천 투어 목록(데이 투어, 다일 여정), 투어 전후 숙박 안내</td></tr><tr><td>Old Tbilisi Guide</td><td>지역·명소 소개에 관련 투어 연결</td></tr><tr><td>루프탑 Cafe</td><td>투어 후 휴식 공간 안내, 투어 사이트 연결</td></tr><tr><td>예약 확정·도착 전 안내 메일</td><td>체류 일정에 맞는 추천 투어</td></tr><tr><td>About Envoy</td><td>Our Story, Envoy Way, Our Impact를 투어 사이트와 동일 문안으로 공유</td></tr></tbody></table></div>
+<h4>Old Tbilisi Guide 구성</h4>
+<ol><li>호스텔 주변 지도와 주요 지점까지의 도보 시간(자유광장, 나리칼라 요새, 유황 온천지구 등)</li><li>Envoy 추천 장소: 카페, 레스토랑, 와인 바, 시장 등 카드 형식 소개</li><li>여행 정보: 공항 이동, 대중교통, 환전, 심카드, 날씨</li><li>추천 투어: 트빌리시 출발 데이 투어</li></ol>
+<ul><li>호스텔 재오픈 전까지 투어 사이트의 호스텔 연결 링크에 재오픈 안내(Reopening April 2027) 표기</li></ul>
+<h2 id="hp10">10. 주요 기능 요구사항</h2>
+<p>첫 공개는 객실 안내와 직접 예약에 집중하고, 운영 준비가 필요한 연동 기능은 사용 도구와 관리 담당 확정 후 후속 적용함.</p>
+<h4>1차 공개</h4>
+<div class="tbl"><table><thead><tr><th>구분</th><th>기능</th></tr></thead><tbody><tr><td>직접 예약</td><td>Cloudbeds 예약 엔진 연동, 헤더 고정 Book Now, 홈 예약 바, 모바일 하단 고정 예약 바</td></tr><tr><td>객실 안내</td><td>유형별 객실 페이지, 객실 카드, Floor Guide, Room Facilities</td></tr><tr><td>Cafe 안내</td><td>루프탑 Cafe 독립 페이지, 운영 시간·메뉴</td></tr><tr><td>문의 접수</td><td>문의 양식 3종, 고객 접수 확인 메일, 담당자 이메일 알림, WhatsApp 링크</td></tr><tr><td>투어 연계</td><td>추천 투어 카드(투어 사이트 상세 페이지 연결)</td></tr><tr><td>콘텐츠 관리</td><td>CMS 기반 구축. 객실 정보, 혜택, 이벤트, 소식, 후기를 비개발자가 직접 수정</td></tr><tr><td>재오픈 안내</td><td>재오픈 전 공개 시 재오픈 일정 배너, 예약 개시 전 알림 신청</td></tr><tr><td>법적 고지</td><td>개인정보 처리방침, 쿠키 동의, 예약·취소 약관, 하우스 규칙</td></tr></tbody></table></div>
+<h4>후속 기능</h4>
+<div class="tbl"><table><thead><tr><th>기능</th><th>선행 조건</th></tr></thead><tbody><tr><td>Hostelworld·Google 후기, Instagram 연동</td><td>연동 도구 확정</td></tr><tr><td>이벤트 달력</td><td>이벤트 운영 계획 및 관리 담당 확정</td></tr><tr><td>Cafe 좌석 예약</td><td>좌석 예약 운영 여부 확정</td></tr><tr><td>호스텔·투어 연계 패키지 예약</td><td>패키지 상품 및 요금 확정</td></tr><tr><td>통화 선택</td><td>표기 통화 및 대상 시장 확정</td></tr><tr><td>뉴스레터 구독, 기프트 바우처</td><td>운영 도구 확정</td></tr></tbody></table></div>
+<h2 id="hp11">11. 디자인 방향</h2>
+<ul><li>공간과 사람 중심의 대형 사진으로 부티크 호스텔의 분위기와 투숙객 교류 전달(라운지, 루프탑 일몰, 투어 출발 장면)</li><li>따뜻하고 명확한 어조, Chic·Industrial·Eclectic이 어우러진 공간 톤 반영</li><li>모바일 화면을 기준으로 설계한 후 PC 화면으로 확장</li><li>버튼 위계 구분: 주 버튼(Book Now)과 보조 연락 수단(WhatsApp)을 시각적으로 구분</li><li>카드, 버튼, 예약 바 등 공통 요소를 투어 사이트와 동일한 디자인 체계로 표준화</li><li>Envoy BI(로고, 컴러, 서체) 적용. BI 확정 전에는 임시 안으로 진행하고 확정 후 교체</li></ul>
+<h2 id="hp12">12. 콘텐츠 계획</h2>
+<div class="tbl"><table><thead><tr><th>콘텐츠</th><th>주요 내용</th><th>담당</th></tr></thead><tbody><tr><td>객실 콘텐츠</td><td>객실별 사진, 면적·침대·설비 정보, 요금 기준, 층별 배치도</td><td>추후 지정</td></tr><tr><td>공간 사진·영상</td><td>리노베이션 완료 후 건물, 객실, 라운지, 루프탑 Cafe, 투숙객 장면 촬영</td><td>추후 지정</td></tr><tr><td>Cafe 콘텐츠</td><td>운영 시간, 대표 메뉴, 이벤트</td><td>추후 지정</td></tr><tr><td>직접 예약 혜택</td><td>혜택 항목 및 조건</td><td>추후 지정</td></tr><tr><td>회사 소개 콘텐츠 및 사진</td><td>About Envoy, Our Story, Envoy Way, Our Impact, 건물의 이야기, 운영 이력</td><td>Erik, Annie, Ryan</td></tr><tr><td>후기·수상 이력</td><td>플랫폼 평점, 수상 이력, 투숙객 이야기</td><td>추후 지정</td></tr><tr><td>Old Tbilisi Guide</td><td>지역 소개, 추천 장소, 여행 정보(기존 Travel Tips·About Georgia 개편)</td><td>추후 지정</td></tr><tr><td>추천 투어</td><td>투어 카드용 사진·요약 정보</td><td>Marine</td></tr></tbody></table></div>
+<h2 id="hp13">13. 진행 단계</h2>
+<div class="tbl"><table><thead><tr><th>단계</th><th>주요 내용</th><th>일정</th></tr></thead><tbody><tr><td>1. 사이트 구조 기획</td><td>사이트맵, 메뉴, 객실 구성, 페이지 구성, 기능 요구사항(본 기획안), 와이어프레임</td><td>진행 중</td></tr><tr><td>2. 비주얼 디자인</td><td>홈, 객실, Cafe 페이지 디자인. BI 확정 전 착수 가능하며, BI 확정 후 최종 적용</td><td>추후 확정</td></tr><tr><td>3. 콘텐츠 제작</td><td>공간·객실 촬영(리노베이션 완료 후), 객실·Cafe 정보, 회사 소개 콘텐츠. 상세 내용은 12항 참조</td><td>추후 확정</td></tr><tr><td>4. 1차 구축 및 공개</td><td>예약 엔진 연동, 객실·Cafe 페이지, 문의 접수, CMS 구축 및 콘텐츠 등록, 기기별 점검 후 공개. 재오픈(2027년 4월) 전 예약 개시</td><td>추후 확정</td></tr><tr><td>5. 후속 기능 적용</td><td>후기·Instagram 연동, 이벤트 달력, Cafe 좌석 예약, 연계 패키지 등(10항 참조)</td><td>추후 확정</td></tr><tr><td>6. 최적화 및 운영 방안</td><td>검색 최적화, 성과 측정, 운영·관리 체계 수립</td><td>추후 확정</td></tr></tbody></table></div>
+    </section>
+
+    <!-- HOSTEL PROGRESS -->
+    <section class="view" id="v-hostel-progress" data-en-ready="false">
       <p class="en-note">English version coming soon.</p>
       <p class="eyebrow">Envoy Hostel</p>
-      <h1>Envoy Hostel 웹사이트 리뉴얼</h1>
-      <p class="lede">올드 트빌리시에 위치한 Envoy Hostel을 부티크 호스텔로 재오픈함에 따라, envoyhostel.com을 트빌리시 중심의 숙박 사이트로 리뉴얼함. 루프탑 Cafe는 호스텔과 하나의 공간으로 소개함.</p>
+      <h1>진행 현황</h1>
       <div class="tbl"><table>
+        <thead><tr><th>단계</th><th>상태</th><th>산출물</th></tr></thead>
         <tbody>
-          <tr><td>대상 사이트</td><td>envoyhostel.com</td></tr>
-          <tr><td>호스텔 재오픈</td><td>2027년 4월</td></tr>
-          <tr><td>착수 시점</td><td>Envoy Tours 사이트 기획 완료 후</td></tr>
-          <tr><td>공유 콘텐츠</td><td>About Envoy, Envoy Way, Our Impact, Envoy BI</td></tr>
+          <tr><td>1. 사이트 구조 기획</td><td><span class="pill go">진행 중</span></td><td><a href="#hostel-plan">기획안</a></td></tr>
+          <tr><td>2. 비주얼 디자인</td><td><span class="pill wait">추후 확정</span></td><td>홈, 객실, Cafe 페이지 디자인 시안</td></tr>
+          <tr><td>3. 콘텐츠 제작</td><td><span class="pill wait">추후 확정</span></td><td>공간·객실 사진, 객실·Cafe 정보, 회사 소개 콘텐츠</td></tr>
+          <tr><td>4. 1차 구축 및 공개</td><td><span class="pill wait">추후 확정</span></td><td>envoyhostel.com 1차 공개</td></tr>
+          <tr><td>5. 후속 기능 적용</td><td><span class="pill wait">추후 확정</span></td><td>후기·Instagram 연동, 이벤트 달력, Cafe 좌석 예약 등</td></tr>
+          <tr><td>6. 최적화 및 운영 방안</td><td><span class="pill wait">추후 확정</span></td><td>검색 최적화, 성과 측정, 운영·관리 체계</td></tr>
         </tbody>
       </table></div>
-      <div class="empty">
-        <b>기획안 및 와이어프레임 준비 중</b>
-      </div>
+      <h2>업데이트 기록</h2>
+      <ul class="log">
+        <li><time>2026-11-23</time>웹사이트 리뉴얼 기획안 작성</li>
+      </ul>
     </section>
   </main>
 </div>
@@ -621,7 +715,7 @@ footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-lef
 <script>
 (function () {
   var root = document.documentElement;
-  var views = ["overview", "tours-plan", "tours-wireframes", "tours-progress", "hostel"];
+  var views = ["overview", "tours-plan", "tours-wireframes", "tours-progress", "hostel-plan", "hostel-progress"];
   function setLang(l) {
     root.setAttribute("data-lang", l);
     root.setAttribute("lang", l === "en" ? "en" : "ko");
@@ -639,6 +733,7 @@ footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-lef
 
   function show() {
     var h = (location.hash || "").replace("#", "");
+    if (h === "hostel") h = "hostel-plan";
     if (views.indexOf(h) < 0) h = "overview";
     views.forEach(function (v) {
       document.getElementById("v-" + v).classList.toggle("on", v === h);
@@ -655,7 +750,7 @@ footer.f { max-width: 1240px; margin: 0 auto; padding-block: 0 40px; padding-lef
   document.querySelectorAll("[data-jump]").forEach(function (a) {
     a.addEventListener("click", function (e) {
       var t = document.getElementById(a.getAttribute("data-jump"));
-      if (t && location.hash === "#tours-plan") { e.preventDefault(); t.scrollIntoView({ behavior: "smooth", block: "start" }); }
+      if (t && location.hash === a.getAttribute("href")) { e.preventDefault(); t.scrollIntoView({ behavior: "smooth", block: "start" }); }
       else if (t) { setTimeout(function () { t.scrollIntoView({ block: "start" }); }, 0); }
     });
   });
