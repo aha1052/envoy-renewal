@@ -1,4 +1,4 @@
-# Envoy 웹사이트 리뉴얼 진행 공유
+# Envoy 웹사이트 리뉴얼 프로젝트
 
 Envoy Tours·Envoy Hostel 웹사이트 리뉴얼의 기획안, 와이어프레임, 진행 현황을 공유하는 정적 사이트(GitHub Pages).
 
