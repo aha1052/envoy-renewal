@@ -52,6 +52,7 @@ a{{color:#1f1f1f}}a:hover{{color:#000}}
 PAGES = [
     ("hostel-home", "홈"),
     ("hostel-rooms", "Dormitory Rooms"),
+    ("hostel-private-rooms", "Private Rooms"),
     ("hostel-cafe", "Cafe"),
     ("hostel-tbilisi", "Old Tbilisi Guide"),
     ("hostel-about", "About Envoy"),
@@ -123,7 +124,7 @@ def header():
 
 def footer_sec():
     cols = [("Envoy Hostel", "[Street address], Old Tbilisi<br>+995 [000 000 000]<br>hostel@[domain]"),
-            ("Stay", "Dormitory Rooms<br>Ensuite Rooms<br>Cafe"),
+            ("Stay", "Dormitory Rooms<br>Private Rooms<br>Cafe"),
             ("Envoy", "About Envoy<br>Our Impact<br>Envoy Tours"),
             ("Policies", "Booking terms<br>House rules<br>Privacy")]
     items = [f'<div style="font-size: 13px; color: #555; line-height: 1.7"><strong style="color: #1f1f1f">{a}</strong><br>{b}</div>' for a, b in cols]
@@ -147,8 +148,8 @@ ROOMS = [
     ("Dormitory", "6-Bed Dormitory", "6 beds · shared bathroom", "per bed"),
     ("Dormitory", "4-Bed Dormitory", "4 beds · shared bathroom", "per bed"),
     ("Dormitory", "Accessible 4-Bed Dormitory", "4 beds · step-free access", "per bed"),
-    ("Ensuite", "Double Ensuite", "1 double bed · private bathroom", "per room"),
-    ("Ensuite", "Family Ensuite", "Up to [4] guests · private bathroom", "per room"),
+    ("Private · Ensuite", "Double Ensuite", "1 double bed · up to 2 guests · private bathroom", "per room"),
+    ("Private · Ensuite", "Family Ensuite", "[Bed setup] · up to [3–4] guests · private bathroom", "per room"),
 ]
 
 def room_card(r, h=180):
@@ -174,7 +175,12 @@ def home():
         <span style="font-size: 14px; font-weight: 600">Reopening April 2027</span>
         <h1 style="margin: 0; font-size: 40px; line-height: 1.15">A boutique hostel in Old Tbilisi</h1>
         <div style="font-size: 18px">Rooms, a rooftop cafe and tours under one roof</div>
+        <a href="#" style="{BTN}; align-self: flex-start">Get notified</a>
       </div>''')
+    stages = [("재오픈 안내", "Reopening April 2027", "Get notified"),
+              ("사전 예약", "Now booking stays from April 2027", "Book Now"),
+              ("정상 운영", "A boutique hostel in Old Tbilisi", "Book Now")]
+    s += sec("①-1 재오픈 단계별 첫 화면", grid(3, [f'<div style="{CARD}; padding: 16px; display: flex; flex-direction: column; gap: 8px"><span lang="ko" style="font-size: 12px; font-weight: 600">{i+1}. {a}</span><div style="height: 72px; {GREY}; border-radius: 4px; display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box; font-size: 13px; font-weight: 600">{b}</div><div style="display: flex; align-items: center; gap: 8px"><span style="{BTN}; min-height: 32px; padding: 0 12px; font-size: 13px">{c}</span></div></div>' for i, (a, b, c) in enumerate(stages)]))
     s += sec("② 예약 바", booking_bar())
     s += sec("③ Stay with Envoy", f'''<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: center">
         <div style="display: flex; flex-direction: column; gap: 10px">{h2("Stay with Envoy", 4)}{lines(4, 50)}<a href="hostel-about.html">Our story</a></div>
@@ -182,14 +188,14 @@ def home():
       </div>''')
     cards = [
         f'<a href="hostel-rooms.html" style="{CARD}; overflow: hidden; text-decoration: none"><div style="height: 220px; {GREY}"></div><div style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 18px">Dormitory Rooms</strong><span style="{SUB}">4, 6 and 8 beds · curtains, reading lights, lockers</span><span>From USD [TBD] per bed</span><span style="text-decoration: underline">View Rooms</span></div></a>',
-        f'<a href="hostel-rooms.html" style="{CARD}; overflow: hidden; text-decoration: none"><div style="height: 220px; {GREY}"></div><div style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 18px">Ensuite Rooms</strong><span style="{SUB}">Double and family rooms · private bathroom</span><span>From USD [TBD] per room</span><span style="text-decoration: underline">View Rooms</span></div></a>',
+        f'<a href="hostel-private-rooms.html" style="{CARD}; overflow: hidden; text-decoration: none"><div style="height: 220px; {GREY}"></div><div style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 18px">Private Rooms</strong><span style="{SUB}">Double and family rooms · all ensuite</span><span>From USD [TBD] per room</span><span style="text-decoration: underline">View Rooms</span></div></a>',
     ]
     s += sec("④ Rooms", h2("Rooms") + grid(2, cards))
     perks = ["Welcome drink", "Cafe benefit", "Flexible changes", "Tour benefit"]
     s += sec("⑤ Why Book Direct", h2("Why book direct") + grid(4, [f'<div style="{CARD}; padding: 20px"><div style="width: 40px; height: 40px; background: #e4e4e4; border-radius: 50%; margin-bottom: 12px"></div><strong>{p}</strong><p style="margin: 6px 0 0; {SUB}">[TBD]</p></div>' for p in perks]))
     s += sec("⑥ 루프탑 Cafe", f'''<div class="ph-dark" style="height: 320px; {bg("city", 1800, True)}; border: 1px solid #c4c4c4; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; box-sizing: border-box; gap: 8px">
         <h2 style="margin: 0; font-size: 28px">[Cafe name] on the rooftop</h2>
-        <span>Coffee by day, sunset over Old Tbilisi · Open [hours]</span>
+        <span>Coffee, breakfast and lunch by day, a glass of wine at sunset · Open [hours]</span>
         <a href="hostel-cafe.html" style="{BTN}; align-self: flex-start">Visit the Cafe</a>
       </div>''')
     trust = ["[Years] in Old Tbilisi", "Hostelworld [rating]", "TripAdvisor [rating]", "[Awards]"]
@@ -214,7 +220,7 @@ def home():
 
 def rooms():
     s = ""
-    s += sec("① 페이지 상단", f'''<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; font-size: 14px"><span style="border: 1px solid #1f1f1f; border-radius: 18px; padding: 6px 14px; font-weight: 600">Dormitory Rooms</span><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Ensuite Rooms</a><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Floor Guide</a><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Room Facilities</a><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Common Areas</a></div>
+    s += sec("① 페이지 상단", f'''<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; font-size: 14px"><span style="border: 1px solid #1f1f1f; border-radius: 18px; padding: 6px 14px; font-weight: 600">Dormitory Rooms</span><a href="hostel-private-rooms.html" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Private Rooms</a><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Floor Guide</a><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Room Facilities</a><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Common Areas</a></div>
       <h1 style="margin: 0 0 8px; font-size: 36px">Dormitory Rooms</h1>
       <div style="max-width: 640px; display: flex; flex-direction: column; gap: 8px">{lines(2, 70)}</div>''')
     s += sec("② 예약 바", booking_bar())
@@ -229,12 +235,31 @@ def rooms():
     s += sec("⑧ 추천 투어", h2("While you are in Tbilisi") + grid(3, [tour_card("kazbeg", "Day tour", "[Day tour name]"), tour_card("mtskheta", "Day tour", "[Day tour name]"), tour_card("wine", "Day tour", "[Day tour name]")]), last=True)
     return page_desktop(1, s)
 
+def private_rooms():
+    s = ""
+    s += sec("① 페이지 상단", f'''<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; font-size: 14px"><a href="hostel-rooms.html" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Dormitory Rooms</a><span style="border: 1px solid #1f1f1f; border-radius: 18px; padding: 6px 14px; font-weight: 600">Private Rooms</span><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Floor Guide</a><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Room Facilities</a><a href="#" style="border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 14px; text-decoration: none">Common Areas</a></div>
+      <h1 style="margin: 0 0 8px; font-size: 36px">Private Rooms</h1>
+      <p style="margin: 0 0 8px; color: #444">Double and family rooms, each with its own bathroom.</p>
+      <div style="max-width: 640px; display: flex; flex-direction: column; gap: 8px">{lines(2, 70)}</div>''')
+    s += sec("② 예약 바", booking_bar())
+    s += sec("③ 객실 카드", grid(2, [room_card(r, 280) for r in ROOMS[4:6]], 24))
+    std = ["Private bathroom (ensuite)", "Towels and toiletries", "Heating and air conditioning", "Desk and reading light", "Wardrobe and luggage space", "Fast Wi-Fi", "Extra bed or cot [TBD]", "Daily housekeeping [TBD]"]
+    s += sec("④ 개인실 공통 설비", h2("In every private room") + grid(4, [f'<div style="display: flex; gap: 10px; align-items: center"><span style="width: 32px; height: 32px; flex: none; background: #e4e4e4; border-radius: 50%"></span><span>{x}</span></div>' for x in std], 16))
+    s += sec("⑤ 가족·장기 체류 안내", grid(2, [
+        f'<div style="{CARD}; padding: 24px; display: flex; flex-direction: column; gap: 8px"><strong style="font-size: 18px">Travelling with family</strong><span style="{SUB}">Family Ensuite, beds for children, family and dorm combinations [TBD]</span>{lines(2, 60)}</div>',
+        f'<div style="{CARD}; padding: 24px; display: flex; flex-direction: column; gap: 8px"><strong style="font-size: 18px">Staying longer</strong><span style="{SUB}">Off-season long-stay rates for private rooms [TBD]</span><a href="hostel-contact.html" style="{BTN2}; align-self: flex-start">Group &amp; Long Stay Inquiry</a></div>']))
+    s += sec("⑥ 직접 예약 혜택·하우스 정보", grid(2, [
+        f'<div style="{CARD}; padding: 24px"><strong style="font-size: 18px">Why book direct</strong><ul style="margin: 8px 0 0; padding-left: 18px; color: #444"><li>Welcome drink [TBD]</li><li>Cafe benefit [TBD]</li><li>Flexible changes [TBD]</li></ul></div>',
+        f'<div style="{CARD}; padding: 24px"><strong style="font-size: 18px">Good to know</strong><ul style="margin: 8px 0 0; padding-left: 18px; color: #444"><li>Check-in [time] · Check-out [time]</li><li>Luggage storage</li><li><a href="#">House rules</a></li></ul></div>']))
+    s += sec("⑦ 추천 투어", h2("While you are in Tbilisi") + grid(3, [tour_card("kazbeg", "Day tour", "[Day tour name]"), tour_card("mtskheta", "Day tour", "[Day tour name]"), tour_card("wine", "Day tour", "[Day tour name]")]), last=True)
+    return page_desktop(2, s)
+
 def cafe():
     s = ""
     s += sec("① 메인 비주얼", f'''<div class="ph-dark" style="height: 460px; {bg("city", 1800, True)}; border: 1px solid #c4c4c4; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; box-sizing: border-box; gap: 10px">
         <span style="font-weight: 600">Rooftop · Envoy Hostel</span>
         <h1 style="margin: 0; font-size: 40px; line-height: 1.15">[Cafe name]</h1>
-        <div style="font-size: 18px">Coffee by day, sunset over Old Tbilisi</div>
+        <div style="font-size: 18px">Coffee, a light meal and the view over Old Tbilisi</div>
       </div>''')
     info = [("Open", "[Days] · [hours]"), ("Where", "Rooftop, [street address]"), ("Who", "Open to guests and visitors [TBD]")]
     s += sec("② 이용 정보", grid(3, [f'<div style="{CARD}; padding: 20px"><div style="{SUB}">{a}</div><strong>{b}</strong></div>' for a, b in info]) + '<div style="margin-top: 12px"><a href="hostel-contact.html">Getting here</a></div>')
@@ -243,7 +268,7 @@ def cafe():
         <div style="display: flex; flex-direction: column; gap: 16px">{ph(182)}{ph(182)}</div>
       </div>
       <div style="max-width: 720px; margin-top: 16px; display: flex; flex-direction: column; gap: 8px">{lines(3)}</div>''')
-    menu = [("Coffee", None), ("Breakfast", "food"), ("Georgian wine", "wine"), ("[Signature item]", None), ("[Signature item]", None), ("[Signature item]", None)]
+    menu = [("Coffee", None), ("Breakfast", "food"), ("[Lunch plate]", None), ("[Evening plate]", None), ("Georgian wine", "wine"), ("[Signature item]", None)]
     items = [f'<div style="{CARD}; overflow: hidden">{ph(160, k, 600, 0, "; border: 0")}<div style="padding: 12px; display: flex; justify-content: space-between"><strong>{n}</strong><span style="color: #555">GEL [TBD]</span></div></div>' for n, k in menu]
     s += sec("④ 대표 메뉴", f'<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px"><h2 style="margin: 0; font-size: 24px; flex: 1">On the menu</h2><a href="#" style="{BTN2}">Full Menu</a></div>' + grid(3, items))
     ev = [("[Date]", "Sunset hour on the rooftop"), ("[Date]", "Weekend community evening"), ("[Date]", "[Event name]")]
@@ -253,7 +278,7 @@ def cafe():
     s += sec("⑧ 연계 안내", grid(2, [
         f'<a href="hostel-rooms.html" style="{CARD}; overflow: hidden; text-decoration: none"><div style="height: 180px; {GREY}"></div><div style="padding: 16px"><strong>Stay with Envoy</strong><div style="{SUB}">Rooms in the same building</div></div></a>',
         f'<a href="hostel-tbilisi.html" style="{CARD}; overflow: hidden; text-decoration: none"><div style="height: 180px; {bg("kazbeg", 900)}"></div><div style="padding: 16px"><strong>Tours with Envoy</strong><div style="{SUB}">Day trips from Tbilisi</div></div></a>']), last=True)
-    return page_desktop(2, s)
+    return page_desktop(3, s)
 
 def tbilisi():
     s = ""
@@ -272,7 +297,7 @@ def tbilisi():
              tour_card("wine", "Day tour", "[Day tour name]"), tour_card("geghard", "Cross-border day tour", "[Day tour name]")]
     s += sec("⑤ Tours with Envoy", f'<div id="tours" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px"><h2 style="margin: 0; font-size: 24px; flex: 1">Tours with Envoy</h2><span style="{SUB}">Guest tour benefit [TBD]</span><a href="#" style="{BTN2}">All Tours on Envoy Tours</a></div>' + grid(4, tours))
     s += sec("⑥ 투어 전후 숙박", f'<div style="{CARD}; padding: 32px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center"><div style="flex: 1 1 400px"><h2 style="margin: 0 0 6px; font-size: 22px">Joining a multi-day tour?</h2><span style="color: #555">Stay with us the night before and after your journey</span></div><a href="#" style="{BTN}">Book Now</a></div>', last=True)
-    return page_desktop(3, s)
+    return page_desktop(4, s)
 
 def about():
     s = ""
@@ -290,7 +315,7 @@ def about():
     nums = [("[Number]", "[Impact measure]"), ("[Number]", "[Impact measure]"), ("[Number]", "[Impact measure]")]
     s += sec("⑥ Our Impact", f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: center">{ph(300)}<div style="display: flex; flex-direction: column; gap: 10px">{h2("Our Impact", 0)}<strong>[Story title]</strong>{lines(3)}<a href="#">Read the story</a></div></div><div style="margin-top: 24px">' + grid(3, [f'<div style="{CARD}; padding: 20px; text-align: center"><strong style="font-size: 28px">{a}</strong><div style="{SUB}">{b}</div></div>' for a, b in nums]) + '</div>')
     s += sec("⑦ Envoy Tours 연결", f'<div style="{CARD}; padding: 32px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center"><div style="flex: 1 1 400px"><h2 style="margin: 0 0 6px; font-size: 22px">Envoy Tours</h2><span style="color: #555">Journeys across Georgia and Armenia</span></div><a href="#" style="{BTN2}">Visit Envoy Tours</a></div>', last=True)
-    return page_desktop(4, s)
+    return page_desktop(5, s)
 
 def field(lbl, wide=False):
     span = "grid-column: 1 / -1; " if wide else ""
@@ -310,7 +335,7 @@ def contact():
     ch = [("WhatsApp", "+995 [000 000 000]"), ("Email", "hostel@[domain]"), ("Reception", "[Hours]")]
     cu = grid(2, [field("Full name"), field("Email"), field("Message", True)])
     s += sec("⑤ Contact Us", f'<div id="contact" style="display: grid; grid-template-columns: 1fr 2fr; gap: 32px"><div style="display: flex; flex-direction: column; gap: 12px">{h2("Contact Us", 0)}' + "".join(f'<div><div style="{SUB}">{a}</div><strong>{b}</strong></div>' for a, b in ch) + f'</div><div style="{CARD}; padding: 24px; display: flex; flex-direction: column; gap: 16px">{cu}<a href="#" style="{BTN}; align-self: flex-start">Send Message</a></div></div>', last=True)
-    return page_desktop(5, s)
+    return page_desktop(6, s)
 
 # ---------- mobile ----------
 def mheader():
@@ -348,26 +373,26 @@ def mhome():
       </div>''')
     s += msec("② 예약 바", mbook())
     rc = lambda t, d: f'<a href="hostel-mobile-rooms.html" style="{CARD}; overflow: hidden; text-decoration: none; display: block"><div style="height: 150px; {GREY}"></div><div style="padding: 12px"><strong>{t}</strong><div style="font-size: 13px">{d}</div></div></a>'
-    s += msec("③ Rooms", f'<strong style="display: block; font-size: 18px; margin-bottom: 8px">Rooms</strong><div style="display: flex; flex-direction: column; gap: 12px">{rc("Dormitory Rooms", "From USD [TBD] per bed")}{rc("Ensuite Rooms", "From USD [TBD] per room")}</div>')
+    s += msec("③ Rooms", f'<strong style="display: block; font-size: 18px; margin-bottom: 8px">Rooms</strong><div style="display: flex; flex-direction: column; gap: 12px">{rc("Dormitory Rooms", "From USD [TBD] per bed")}{rc("Private Rooms", "From USD [TBD] per room")}</div>')
     s += msec("④ Why Book Direct", '<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; font-size: 13px">' + "".join(f'<div style="{CARD}; padding: 12px"><strong>{p}</strong></div>' for p in ["Welcome drink", "Cafe benefit", "Flexible changes", "Tour benefit"]) + '</div>')
-    s += msec("⑤ 루프탑 Cafe", f'<div class="ph-dark" style="height: 200px; {bg("city", 900, True)}; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; box-sizing: border-box"><strong style="font-size: 18px">[Cafe name] on the rooftop</strong><span style="font-size: 13px">Open [hours]</span></div>')
+    s += msec("⑤ 루프탑 Cafe", f'<div class="ph-dark" style="height: 200px; {bg("city", 900, True)}; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; box-sizing: border-box"><strong style="font-size: 18px">[Cafe name] on the rooftop</strong><span style="font-size: 13px">Coffee, meals, sunset drinks · Open [hours]</span></div>')
     s += msec("⑥~⑦ 신뢰 요소·후기", f'<div style="{CARD}; padding: 16px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 12px; color: #555">Hostelworld [rating] · TripAdvisor [rating]</span>{lines(2, 70)}<span style="font-size: 12px; color: #555">[Name, country]</span></div>')
     s += msec("⑧ Tours with Envoy", '<div style="display: flex; gap: 12px; overflow: hidden">' + "".join(f'<div style="flex: none; width: 240px; {CARD}; overflow: hidden"><div style="height: 130px; {bg(k, 600)}"></div><div style="padding: 10px"><strong style="font-size: 13px">[Day tour name]</strong><div style="font-size: 12px">From USD [TBD]</div></div></div>' for k in ["kazbeg", "mtskheta"]) + '</div>')
     s += msec("⑨~⑪ Old Tbilisi, Our Impact, Instagram", '<div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; background: #e4e4e4; border-radius: 6px; display: flex; align-items: center; padding: 0 12px; font-weight: 600">Old Tbilisi Guide</div><div style="height: 72px; background: #e4e4e4; border-radius: 6px; display: flex; align-items: center; padding: 0 12px; font-weight: 600">Our Impact</div></div><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 12px"><div style="aspect-ratio: 1; background: #e4e4e4"></div><div style="aspect-ratio: 1; background: #e4e4e4"></div><div style="aspect-ratio: 1; background: #e4e4e4"></div></div>')
     s += msec("⑫ 푸터", '<div style="background: #f2f2f2; padding: 16px; font-size: 12px; color: #555">[Street address], Old Tbilisi · WhatsApp · hostel@[domain] · Booking terms · Envoy Tours</div>', last=True)
-    return page_mobile(6, 800, s, mbottom('<a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 14px; border: 1px solid #9e9e9e; border-radius: 6px; text-decoration: none">WhatsApp</a>', "Book Now"))
+    return page_mobile(7, 800, s, mbottom('<a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 14px; border: 1px solid #9e9e9e; border-radius: 6px; text-decoration: none">WhatsApp</a>', "Book Now"))
 
 def mrooms():
     s = ""
-    s += msec("① 페이지 상단", '<div style="display: flex; gap: 8px; overflow: hidden; font-size: 13px; margin-bottom: 12px"><span style="flex: none; border: 1px solid #1f1f1f; border-radius: 18px; padding: 6px 12px; font-weight: 600">Dormitory</span><span style="flex: none; border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 12px">Ensuite</span><span style="flex: none; border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 12px">Floor Guide</span><span style="flex: none; border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 12px">Facilities</span></div><strong style="display: block; font-size: 24px">Dormitory Rooms</strong>' + f'<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px">{lines(2, 70)}</div>')
+    s += msec("① 페이지 상단", '<div style="display: flex; gap: 8px; overflow: hidden; font-size: 13px; margin-bottom: 12px"><span style="flex: none; border: 1px solid #1f1f1f; border-radius: 18px; padding: 6px 12px; font-weight: 600">Dormitory</span><span style="flex: none; border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 12px">Private</span><span style="flex: none; border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 12px">Floor Guide</span><span style="flex: none; border: 1px solid #9e9e9e; border-radius: 18px; padding: 6px 12px">Facilities</span></div><strong style="display: block; font-size: 24px">Dormitory Rooms</strong>' + f'<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px">{lines(2, 70)}</div>')
     s += msec("② 예약 바", mbook())
     s += msec("③ 객실 카드", '<div style="display: flex; flex-direction: column; gap: 16px">' + "".join(room_card(r, 200) for r in ROOMS[:3]) + '</div>')
     s += msec("④ 도미토리 공통 기준", '<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; font-size: 13px">' + "".join(f'<div style="display: flex; gap: 8px; align-items: center"><span style="width: 24px; height: 24px; flex: none; background: #e4e4e4; border-radius: 50%"></span>{x}</div>' for x in ["Privacy curtain", "Reading light", "Power outlet", "Large locker"]) + '</div>')
     s += msec("⑤ 단체·장기 체류 문의", f'<div style="{CARD}; padding: 12px"><strong>Group or long stay?</strong><div style="font-size: 13px"><a href="hostel-contact.html">Group &amp; Long Stay Inquiry</a></div></div>', last=True)
-    return page_mobile(7, 800, s, mbottom('<span style="font-size: 13px">From USD [TBD]<br><span style="color: #555">per bed</span></span>', "Book Now"))
+    return page_mobile(8, 800, s, mbottom('<span style="font-size: 13px">From USD [TBD]<br><span style="color: #555">per bed</span></span>', "Book Now"))
 
 def main():
-    out = {"hostel-home": home(), "hostel-rooms": rooms(), "hostel-cafe": cafe(), "hostel-tbilisi": tbilisi(),
+    out = {"hostel-home": home(), "hostel-rooms": rooms(), "hostel-private-rooms": private_rooms(), "hostel-cafe": cafe(), "hostel-tbilisi": tbilisi(),
            "hostel-about": about(), "hostel-contact": contact(), "hostel-mobile-home": mhome(), "hostel-mobile-rooms": mrooms()}
     for k, v in out.items():
         with open(os.path.join(OUT, k + ".html"), "w", encoding="utf-8") as fh:
