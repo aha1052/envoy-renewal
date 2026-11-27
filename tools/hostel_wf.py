@@ -225,7 +225,7 @@ def home():
         <span>Sunrise, sunset and night over the old town and Holy Trinity Church</span>
       </div>
       <div style="margin-top: 16px">''' + grid(3, [f'<div class="ph-dark" style="height: 160px; {bg("city", 700, True)}; border-radius: 8px; display: flex; align-items: flex-end; padding: 12px; box-sizing: border-box; font-weight: 600">&#9654; {t}</div>' for t in ["Sunrise", "Sunset", "Night"]]) + f'''</div>
-      <div style="{CARD}; padding: 24px; margin-top: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center"><div style="flex: 1 1 400px"><h3 style="margin: 0 0 6px; font-size: 20px">[Cafe name] on the rooftop</h3><span style="color: #555">Coffee, breakfast and lunch by day, a glass of wine at sunset · Open [hours]</span></div><a href="hostel-cafe.html" style="{BTN}">Visit the Cafe</a></div>''')
+      <div style="{CARD}; padding: 24px; margin-top: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center"><div style="flex: 1 1 400px"><h3 style="margin: 0 0 6px; font-size: 20px">Common Ground on the rooftop</h3><span style="color: #555">Coffee, breakfast and lunch by day, a glass of wine at sunset · Open [hours]</span></div><a href="hostel-cafe.html" style="{BTN}">Visit the Cafe</a></div>''')
     s += sec("⑧ 투숙객 후기", REVIEWS(3))
     tours = [tour_card("kazbeg", "Day tour", "[Day tour name]"), tour_card("mtskheta", "Day tour", "[Day tour name]"),
              tour_card("wine", "Day tour", "[Day tour name]"), tour_card("sevan", "Multi-day", "Envoy Boutique Journey")]
@@ -291,7 +291,7 @@ def cafe():
     s = ""
     s += sec("① 메인 비주얼", f'''<div class="ph-dark" style="height: 460px; {bg("city", 1800, True)}; border: 1px solid #c4c4c4; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; box-sizing: border-box; gap: 10px">
         <span style="font-weight: 600">&#9654; Rooftop view video · Envoy Hostel</span>
-        <h1 style="margin: 0; font-size: 40px; line-height: 1.15">[Cafe name]</h1>
+        <h1 style="margin: 0; font-size: 40px; line-height: 1.15">Common Ground</h1>
         <div style="font-size: 18px">Coffee, a light meal and the view over Old Tbilisi</div>
       </div>''')
     info = [("Open", "[Days] · [hours]"), ("Where", "Rooftop, [street address]"), ("Who", "Open to guests and visitors [TBD]")]
@@ -410,7 +410,7 @@ def mhome():
     rc = lambda t, d: f'<a href="hostel-mobile-rooms.html" style="{CARD}; overflow: hidden; text-decoration: none; display: block"><div style="height: 150px; {GREY}"></div><div style="padding: 12px"><strong>{t}</strong><div style="font-size: 13px">{d}</div></div></a>'
     s += msec("④ Rooms", f'<strong style="display: block; font-size: 18px; margin-bottom: 8px">Rooms</strong><div style="display: flex; flex-direction: column; gap: 12px">{rc("Dormitory Rooms", "From USD [TBD] per bed")}{rc("Private Rooms", "From USD [TBD] per room")}</div>')
     s += msec("⑤ Why Book Direct", '<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; font-size: 13px">' + "".join(f'<div style="{CARD}; padding: 12px"><strong>{p}</strong></div>' for p in ["Welcome drink", "Cafe benefit", "Flexible changes", "Tour benefit"]) + '</div>')
-    s += msec("⑥ 루프탑 전망·Cafe", f'<div class="ph-dark" style="height: 200px; {bg("city", 900, True)}; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; box-sizing: border-box"><span style="font-size: 12px; font-weight: 600">360&#176; Rooftop panorama</span><strong style="font-size: 18px">[Cafe name] on the rooftop</strong><span style="font-size: 13px">Coffee, meals, sunset drinks · Open [hours]</span></div>')
+    s += msec("⑥ 루프탑 전망·Cafe", f'<div class="ph-dark" style="height: 200px; {bg("city", 900, True)}; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; box-sizing: border-box"><span style="font-size: 12px; font-weight: 600">360&#176; Rooftop panorama</span><strong style="font-size: 18px">Common Ground on the rooftop</strong><span style="font-size: 13px">Coffee, meals, sunset drinks · Open [hours]</span></div>')
     s += msec("⑦ 투숙객 후기", f'<div style="{CARD}; padding: 16px; display: flex; flex-direction: column; gap: 8px">{lines(2, 70)}<span style="font-size: 12px; color: #555">[Name, country] · [Platform], [Month Year]</span></div>')
     s += msec("⑧ Tours with Envoy", f'<div style="{CARD}; padding: 12px; margin-bottom: 12px"><strong>Our tour office is in the building</strong><div style="font-size: 13px; color: #555">Travel advice any time · Tour desk [hours]</div><a href="#" style="font-size: 13px">Ask the tour desk</a></div><div style="display: flex; gap: 12px; overflow: hidden">' + "".join(f'<div style="flex: none; width: 240px; {CARD}; overflow: hidden"><div style="height: 130px; {bg(k, 600)}"></div><div style="padding: 10px"><strong style="font-size: 13px">[Day tour name]</strong><div style="font-size: 12px">From USD [TBD]</div></div></div>' for k in ["kazbeg", "mtskheta"]) + '</div>')
     s += msec("⑨~⑪ Old Tbilisi, Our Impact, Instagram", '<div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 72px; background: #e4e4e4; border-radius: 6px; display: flex; align-items: center; padding: 0 12px; font-weight: 600">Old Tbilisi Guide</div><div style="height: 72px; background: #e4e4e4; border-radius: 6px; display: flex; align-items: center; padding: 0 12px; font-weight: 600">Our Impact</div></div><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 12px"><div style="aspect-ratio: 1; background: #e4e4e4"></div><div style="aspect-ratio: 1; background: #e4e4e4"></div><div style="aspect-ratio: 1; background: #e4e4e4"></div></div>')
@@ -430,7 +430,7 @@ def mcafe():
     s = ""
     s += msec("① 메인 비주얼", f'''<div class="ph-dark" style="height: 320px; {bg("city", 900, True)}; border: 1px solid #c4c4c4; border-radius: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; box-sizing: border-box; gap: 6px">
         <span style="font-size: 12px; font-weight: 600">&#9654; Rooftop view video · Envoy Hostel</span>
-        <strong style="font-size: 24px; line-height: 1.2">[Cafe name]</strong>
+        <strong style="font-size: 24px; line-height: 1.2">Common Ground</strong>
         <span style="font-size: 13px">Coffee, a light meal and the view over Old Tbilisi</span>
       </div>''')
     info = [("Open", "[Days] · [hours]"), ("Where", "Rooftop, [street address]"), ("Who", "Open to guests and visitors [TBD]")]
